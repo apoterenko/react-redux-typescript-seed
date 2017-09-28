@@ -1,12 +1,12 @@
 {
   "auth.account": ["11111111-1111-1111-1111-111111111111"],
   "auth.nonce": ["00000000-0000-0000-0000-000000000000"],
-  "store.account.get": {
+  "account.get": {
     "id": 1,
     "name": "Alex"
   },
-  "store.account.rights": ["store.roles.view", "store.role.view", "store.role.add"],
-  "store.right.list": [
+  "account.rights": ["store.roles.view", "store.role.view", "store.role.add"],
+  "right.list": [
     {
       "name": "Right1",
       "id": 1
@@ -24,7 +24,7 @@
       "id": 4
     }
   ],
-  "store.role.list": [
+  "role.list": [
     {
       "name": "Role1",
       "id": 1,
