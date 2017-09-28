@@ -1,6 +1,5 @@
 var fs = require('fs');
 var http = require('http');
-var https = require('https');
 var jsonServer = require('json-server');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -22,10 +21,10 @@ app.use(function (req, res) {
 
 app.use('/api', router);
 
-https.createServer({}, app).listen(8443, function () {
+http.createServer(app).listen(8443, function () {
 	console.log('|-----------------------------------------------------------------------------------|');
 	console.log('| The server is listening on a 8443 port...                                         |');
-	console.log('| An application is available on the link "https://localhost:8443/api/"             |');
+	console.log('| An application is available on the link "http://localhost:8443/api/"             |');
 	console.log('|-----------------------------------------------------------------------------------|');
 	console.log();
 });

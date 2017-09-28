@@ -1,6 +1,5 @@
 const helpers = require('./helpers');
 
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
@@ -112,11 +111,6 @@ module.exports.define = function (options) {
     plugins: [
       ExtractSassPlugin,
       new CheckerPlugin(),
-      new CopyWebpackPlugin([
-        {from: 'src/manifest.json', to: 'manifest.json'},
-        {from: 'src/web.config', to: 'web.config'},
-        {from: 'src/media', to: 'media'}
-      ]),
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'src/app.html',
@@ -127,7 +121,7 @@ module.exports.define = function (options) {
         }
       }),
       new ScriptExtHtmlWebpackPlugin({
-        sync: /polyfills|vendor|app/
+        sync: /polyfills|app/
       }),
       new LoaderOptionsPlugin({
         minimize: options.isProd,
@@ -159,7 +153,7 @@ module.exports.define = function (options) {
       historyApiFallback: true,
       proxy: {
         '/api': {
-          target: 'https://localhost:8443/api',
+          target: 'http://localhost:8443/api',
           secure: false
         }
       }
