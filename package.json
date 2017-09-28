@@ -1,0 +1,39 @@
+{
+	"name": "react-redux-typescript-webpack-seed",
+	"version": "0.0.1",
+	"dependencies": {
+		"@types/core-js": "^0.9.42",
+		"@types/node": "^8.0.16",
+		"@types/react": "^15.0.38",
+		"@types/react-dom": "^15.5.1",
+		"core-js": "^2.4.1",
+		"react": "^15.6.1",
+		"react-dom": "^15.6.1",
+		"react-application-core": "^0.0.70",
+		"ts-node": "^3.3.0",
+		"tslib": "^1.7.1",
+		"typescript": "^2.5.2"
+	},
+	"devDependencies": {
+		"eslint": "^4.2.0",
+		"json-server": "^0.12.0",
+		"mocha": "^3.5.0",
+		"tslint": "^5.6.0",
+		"tslint-loader": "^3.5.2"
+	},
+	"scripts": {
+		"build": "npm run build:dev",
+		"start": "npm run server:dev",
+		"lint": "node_modules/.bin/tslint --config tslint.json src/**/*.ts*",
+		"clean:dist": "npm run rimraf -- dist",
+		"build:dev": "npm run clean:dist && npm run webpack -- --config config/webpack.dev.js --progress --profile",
+		"build:prod": "npm run clean:dist && npm run webpack -- --config config/webpack.prod.js --progress --profile",
+		"server:dev": "npm run webpack-dev-server -- --config config/webpack.dev.js --open --progress --profile --watch --content-base src/",
+		"server:prod": "npm run webpack-dev-server -- --config config/webpack.server.prod.js --open --progress --profile",
+		"server:json": "node server.js",
+		"webpack-dev-server": "node --max_old_space_size=4096 node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+		"webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
+		"rimraf": "rimraf",
+		"node": "node"
+	}
+}
