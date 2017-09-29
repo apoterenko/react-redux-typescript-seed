@@ -19,9 +19,10 @@ fieldset {
 
 @import '../ts/app/component/component';
 @import '~react-application-core/react-application-core';
+
+$mdc-theme-primary: #212121;
 @import '~material-components-web/material-components-web';
 
-/* Material Icons */
 .material-icons {
 	font-family: 'Material Icons';
 	font-weight: normal;

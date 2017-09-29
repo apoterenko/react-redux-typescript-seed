@@ -1,6 +1,7 @@
 {
   "name": "react-redux-typescript-webpack-seed",
   "version": "0.0.1",
+  "license": "MIT",
   "dependencies": {
     "@types/core-js": "^0.9.42",
     "@types/node": "^8.0.16",
@@ -35,5 +36,15 @@
     "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
     "rimraf": "rimraf",
     "node": "node"
-  }
+  },
+  "contributors": [
+    {
+      "name": "Alex Poter",
+      "url": "https://github.com/apoterenko"
+    },
+    {
+      "name": "Ivan Khrulev",
+      "url": "https://github.com/chge"
+    }
+  ]
 }
