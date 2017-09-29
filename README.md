@@ -16,6 +16,10 @@ npm run build:prod
 npm run server:json
 npm start
 
+# Live demo
+
+[Live demo](https://apoterenko.github.io/react-redux-typescript-webpack-seed)
+
 # Preview
 
 ![0](preview/000.png)
