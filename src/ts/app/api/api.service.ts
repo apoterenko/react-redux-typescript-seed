@@ -19,15 +19,11 @@ export class ApiService implements IApi {
   @lazyInject(DI_TYPES.Transport) private transport: ITransport;
 
   public accountGet(): Promise<IUser> {
-    return this.transport.request<IUser>({
-      name: 'account.get',
-    });
+    return this.transport.request<IUser>({ name: 'account.get' });
   }
 
   public accountRights(): Promise<PermissionsT> {
-    return this.transport.request<PermissionsT>({
-      name: 'account.rights',
-    });
+    return this.transport.request<PermissionsT>({ name: 'account.rights' });
   }
 
   public authAccount(apiEntity: IApiEntity<ILoginEntity>): Promise<string> {

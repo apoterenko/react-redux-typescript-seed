@@ -1,8 +1,6 @@
 import * as React from 'react';
 
 import {
-  listWrapperMapper,
-  filterWrapperMapper,
   defaultMappers,
   BaseContainer,
   DefaultLayoutContainer,
@@ -22,9 +20,7 @@ import { AppPermissions } from '../app.permissions';
   },
   accessConfig: [AppPermissions.ROLES_VIEW],
   mappers: [
-    ...defaultMappers,
-    (state) => filterWrapperMapper(state.roles),
-    (state) => listWrapperMapper(state.roles)
+    ...defaultMappers
   ],
 })
 class MainContainer extends BaseContainer<{}, {}> {

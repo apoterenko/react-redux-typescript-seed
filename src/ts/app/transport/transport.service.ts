@@ -6,12 +6,11 @@ import { DI_TYPES, IStorage, lazyInject } from 'react-application-core';
 import { IAppState } from '../app.interface';
 import { IRawResponse, IRequest, ITransport, ITransportRequest } from './transport.interface';
 
-// TODO refactoring
 @injectable()
 export class TransportService implements ITransport {
 
-  public static API_URL = '/api';
-  public static AUTH_TOKEN = 'auth.token';
+  private static API_URL = '/api';
+  private static AUTH_TOKEN = 'auth.token';
 
   private requestsMap = new Map<string, Axios.CancelTokenSource>();
   @lazyInject(DI_TYPES.Storage) private storage: IStorage;
@@ -73,17 +72,7 @@ export class TransportService implements ITransport {
     });
   }
 
-  public cancelRequest(requestId: string): void {
-    const source = this.requestsMap.get(requestId);
-    if (source) {
-      source.cancel('Operation canceled by the user.');
-    } else {
-      // TODO logging
-      console.warn('Source has not been found by the requestId');
-    }
-  }
-
-  get authToken(): string {
+  public get authToken(): string {
     return this.storage.get(TransportService.AUTH_TOKEN);
   }
 }

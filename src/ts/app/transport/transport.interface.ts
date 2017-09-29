@@ -3,7 +3,6 @@ import { IKeyValue, IOperation } from 'react-application-core';
 export interface ITransport {
   authToken: string;
   request<R>(req: ITransportRequest): Promise<R>;
-  cancelRequest(requestId: string): void;
 }
 
 export interface ITransportRequest {

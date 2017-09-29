@@ -72,8 +72,8 @@ class TotpContainer extends BaseContainer<IFormContainerInternalProps<ITotpEntit
                        min={6}
                        max={6}
                        pattern='[0-9]{6}'
-                       required
-                       autoFocus/>
+                       required={true}
+                       autoFocus={true}/>
           </FormContainer>
         </FormLayoutContainer>
     );
