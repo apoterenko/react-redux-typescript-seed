@@ -16,6 +16,20 @@ npm run build:prod
 npm run server:json
 npm start
 
+# Preview
+
+![0](preview/000.png)
+
+![1](preview/001.png)
+
+![2](preview/002.png)
+
+![3](preview/003.png)
+
 # Contributors
 
 [<img alt="apoterenko" src="https://avatars0.githubusercontent.com/u/12325691?v=4&s=460" width="117">](https://github.com/apoterenko)[<img alt="chge" src="https://avatars3.githubusercontent.com/u/400840?v=4&s=460" width="117">](https://github.com/chge)
+
+## License
+
+Licensed under MIT.

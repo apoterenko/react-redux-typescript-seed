@@ -56,3 +56,8 @@ $mdc-theme-primary: #212121;
 		url(../media/font/MaterialIcons-Regular.woff) format('woff'),
 		url(../media/font/MaterialIcons-Regular.ttf) format('truetype');
 }
+
+// Override
+.mdc-button, .mdc-textfield {
+	will-change: unset !important;
+}
