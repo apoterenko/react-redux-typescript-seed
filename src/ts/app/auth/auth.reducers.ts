@@ -6,8 +6,8 @@ import {
   formReducer,
 } from 'react-application-core';
 
-import { LOGIN_SECTION } from './login/login.interface';
-import { TOTP_SECTION } from './totp/totp.interface';
+import { LOGIN_SECTION } from './login';
+import { TOTP_SECTION } from './totp';
 
 export const authReducers = combineReducers({
   login: filter(formReducer, reducerSectionFilter(LOGIN_SECTION)),
