@@ -16,7 +16,7 @@ import {
 
 import { IAppState } from '../../app.interface';
 import { ROUTER_PATHS } from '../../app.routers';
-import { AccessConfigT } from '../../permission/permission.interface';
+import { AccessConfigT } from '../../permission';
 import { Spacer, Footer } from '../../component';
 import {
   ITotpEntity,
@@ -45,7 +45,7 @@ class TotpContainer extends BaseContainer<IFormContainerInternalProps<ITotpEntit
 
   public render(): JSX.Element {
     const props = this.props;
-    const entity = props.form.changes as ITotpEntity;
+    const changes = props.form.changes;
 
     const footer = (
         <Footer>
@@ -63,14 +63,14 @@ class TotpContainer extends BaseContainer<IFormContainerInternalProps<ITotpEntit
         <FormLayoutContainer title='Authenticate'
                              footer={footer}
                              {...props}>
-          <FormContainer settings={{actionText: 'Next'}}
+          <FormContainer settings={{actionText: 'Next', className: 'app-auth-form'}}
                          {...props}>
             <TextField name='code'
-                       value={entity.code}
+                       value={changes.code}
                        type='tel'
                        label='Access code'
-                       min={6}
-                       max={6}
+                       minLength={6}
+                       maxLength={6}
                        pattern='[0-9]{6}'
                        required={true}
                        autoFocus={true}/>
