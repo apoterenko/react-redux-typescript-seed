@@ -1,44 +1,33 @@
 import { IEffectsAction, EffectsService } from 'redux-effects-promise';
 
 import {
-  provide,
+  provideInSingleton,
   FormActionBuilder,
   IApiEntity,
-  ListActionBuilder,
   BaseEffects,
 } from 'react-application-core';
 
 import { ROUTER_PATHS } from '../../../app.routers';
 import { ROLES_SECTION } from '../roles.interface';
 import { ROLE_SECTION } from './role.interface';
-import { IApi, IRole } from '../../../api/api.interface';
+import { IApi } from '../../../api/api.interface';
+import { IRoleEntity } from '../../permission.interface';
 
-@provide(RoleEffects)
+@provideInSingleton(RoleEffects)
 export class RoleEffects extends BaseEffects<IApi> {
 
   @EffectsService.effects(FormActionBuilder.buildSubmitActionType(ROLE_SECTION))
   public onSaveRole(action: IEffectsAction): Promise<IEffectsAction[]> {
-    const apiPayload = action.data as IApiEntity<IRole>;
+    const apiEntity = action.data as IApiEntity<IRoleEntity>;
+    return this.api.saveRole(apiEntity).then((result) => [
+      this.buildFormSubmitDoneAction(ROLE_SECTION),
+      this.buildListEntityUpdateAction(ROLES_SECTION, apiEntity, result),
+      this.buildRouterNavigateAction(ROUTER_PATHS.ROLES)
+    ]);
+  }
 
-    return this.api.saveRole(apiPayload)
-        .then((_) => ([
-          this.buildFormSubmitDoneAction(ROLE_SECTION),
-          apiPayload.isIdExist
-              ? ListActionBuilder.buildUpdateAction(ROLES_SECTION, {
-                payload: {
-                  id: apiPayload.id,
-                  changes: apiPayload.changes,  // Pass the server side entity
-                },
-                section: ROLES_SECTION,
-              })
-              : ListActionBuilder.buildInsertAction(ROLES_SECTION, {
-                payload: {
-                  id: apiPayload.id,
-                  changes: apiPayload.changes,  // Pass the server side entity
-                },
-                section: ROLES_SECTION,
-              }),
-          this.buildRouterNavigateAction(ROUTER_PATHS.ROLES)
-        ]));
+  @EffectsService.effects(FormActionBuilder.buildSubmitErrorActionType(ROLE_SECTION))
+  public onSaveRoleError(action: IEffectsAction): IEffectsAction {
+    return this.buildNotificationErrorAction(action.error);
   }
 }

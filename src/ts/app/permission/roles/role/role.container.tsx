@@ -6,13 +6,13 @@ import {
   FormDialog,
   IFormDialogInternalProps,
   TextField,
+  toSelectOptions,
   entityMapper,
   formMapper,
   IDialog,
   DefaultLayoutContainer,
   defaultMappers,
   ChipsField,
-  INITIAL_DICTIONARY_STATE,
   ContainerVisibilityTypeEnum,
   IBaseContainerInternalProps,
   connector,
@@ -20,7 +20,7 @@ import {
 
 import { IRoleContainerInternalProps, ROLE_SECTION } from './role.interface';
 import { IAppState } from '../../../app.interface';
-import { PRIORITIES_DICTIONARY, RIGHTS_DICTIONARY } from '../../../dictionary/dictionaries.interface';
+import { RIGHTS_DICTIONARY } from '../../../dictionary';
 import { ROUTER_PATHS } from '../../../app.routers';
 import { AccessConfigT } from '../../permission.interface';
 import { AppPermissions } from '../../../app.permissions';
@@ -49,17 +49,19 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
   constructor(props: IRoleContainerInternalProps) {
     super(props);
     this.loadRights = this.loadRights.bind(this);
-    this.loadPriorities = this.loadPriorities.bind(this);
     this.navigationControlHandler = this.navigationControlHandler.bind(this);
   }
 
   public render(): JSX.Element {
     const props = this.props;
-    const entity = this.isRouteParamIdEqualNewOption ? props.form.changes : props.entity;
-    const rights = props.dictionaries.rights || INITIAL_DICTIONARY_STATE;
-    const title = this.isRouteParamIdEqualNewOption
+    const entity = props.entity;
+    const entityId = entity ? entity.id : null;
+    const isNewEntity = !entityId;
+    const dictionaries = props.dictionaries;
+    const rights = dictionaries.rights && dictionaries.rights.data;
+    const title = isNewEntity
         ? 'New role'
-        : `Role ${entity.id}`;
+        : `Role ${this.nc.id(entityId)}`;
 
     return (
         <DefaultLayoutContainer navigationControlType='arrow_back'
@@ -70,14 +72,11 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
             <TextField name='name'
                        value={entity.name}
                        label='Name'
-                       required/>
+                       autoFocus={true}
+                       required={true}/>
             <ChipsField name='rights'
-                        label='Right'
-                        options={
-                          rights.data
-                              ? rights.data.map((right) => ({ value: right.id, label: right.name }))
-                              : null
-                        }
+                        label='Rights'
+                        options={toSelectOptions(rights)}
                         value={entity.rights}
                         onEmptyOptions={this.loadRights}
                         useFilter={true}/>
@@ -88,10 +87,6 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
           </FormDialog>
         </DefaultLayoutContainer>
     );
-  }
-
-  private loadPriorities(): void {
-    this.dispatchLoadDictionary(PRIORITIES_DICTIONARY);
   }
 
   private loadRights(): void {
