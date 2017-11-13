@@ -15,10 +15,10 @@ import { IPermissionsState, AccessConfigT, PermissionsT } from './permission';
 import { IDictionariesState } from './dictionary';
 
 export class AppContainer extends ApplicationContainer<IAppState,
-    IDictionariesState,
-    IPermissionsState,
-    PermissionsT,
-    AccessConfigT> {
+                                                       IDictionariesState,
+                                                       IPermissionsState,
+                                                       PermissionsT,
+                                                       AccessConfigT> {
 
   constructor(props: IApplicationContainerProps) {
     super(props);
