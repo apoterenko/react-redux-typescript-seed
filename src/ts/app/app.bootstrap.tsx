@@ -6,8 +6,10 @@ import {
   DI_TYPES,
   makeStore,
   DEFAULT_APPLICATION_SETTINGS,
-  IRouters,
+  IApplicationSettings,
+  IRoutes,
   INavigationListItem,
+  ApplicationStorageTypeEnum,
 } from 'react-application-core';
 
 // Styles
@@ -24,29 +26,28 @@ import './api/api.module';
 import { AppContainer } from './app.container';
 import { ROUTER_PATHS } from './app.routers';
 import { PermissionService } from './permission/permission.service';
-import { TransportService } from './transport/transport.service';
-import { transportReducer } from './transport/transport.reducer';
 import { rolesReducers } from './permission';
 import { authReducers } from './auth';
 import { AppPermissions } from './app.permissions';
 
-const applicationSettings = {
+const applicationSettings: IApplicationSettings = {
   ...DEFAULT_APPLICATION_SETTINGS,
+  companyName: 'Test Company',
+  persistenceStorage: ApplicationStorageTypeEnum.SESSION,
 };
 
 // Services
-appContainer.bind(DI_TYPES.Transport).to(TransportService);
-appContainer.bind(DI_TYPES.Permission).to(PermissionService);
-appContainer.bind(DI_TYPES.Translate).toConstantValue((k) => k);
+appContainer.unbind(DI_TYPES.Settings);
 appContainer.bind(DI_TYPES.Settings).toConstantValue(applicationSettings);
-appContainer.bind(DI_TYPES.Company).toConstantValue('Test company');
+appContainer.bind(DI_TYPES.Permission).to(PermissionService).inSingletonScope();
+appContainer.bind(DI_TYPES.Translate).toConstantValue((k) => k);
 
-// Routers
-appContainer.bind(DI_TYPES.Routers).toConstantValue({
+// Routes
+appContainer.bind(DI_TYPES.Routes).toConstantValue({
   profile: ROUTER_PATHS.HOME,
   login: ROUTER_PATHS.AUTH_LOGIN,
   home: ROUTER_PATHS.HOME,
-} as IRouters);
+} as IRoutes);
 
 // Menu
 const menu: INavigationListItem[] = [
@@ -60,7 +61,6 @@ makeStore(
     {
       auth: authReducers,
       roles: rolesReducers,
-      transport: transportReducer,
     },
     applicationSettings
 );
