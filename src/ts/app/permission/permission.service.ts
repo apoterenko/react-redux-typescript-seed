@@ -1,13 +1,17 @@
 import { Store } from 'redux';
 import { injectable } from 'inversify';
 
-import { DI_TYPES, lazyInject } from 'react-application-core';
+import {
+  DI_TYPES,
+  lazyInject,
+  PermissionService,
+} from 'react-application-core';
 
-import { IPermissionsService, IPermissionsState, AccessConfigT } from './permission.interface';
+import { IPermissionsState, AccessConfigT } from './permission.interface';
 import { IAppState } from '../app.interface';
 
 @injectable()
-export class PermissionService implements IPermissionsService {
+export class AppPermissionService extends PermissionService<AccessConfigT> {
 
   @lazyInject(DI_TYPES.Store) private appStore: Store<IAppState>;
 
@@ -18,10 +22,6 @@ export class PermissionService implements IPermissionsService {
     return [].concat(permissionObject)
         .map((pObject) => permissions.includes(pObject))
         .reduce((pv, cv) => pv && cv);
-  }
-
-  public isAuthorized(): boolean {
-    return this.permissionState.authorized;
   }
 
   private get permissionState(): IPermissionsState {
