@@ -1,6 +1,7 @@
-export interface ILoginEntity {
-  email?: string;
-  password?: string;
+import { IPasswordable, ILoginable } from 'react-application-core';
+
+export interface ILoginEntity extends IPasswordable,
+                                      ILoginable {
 }
 
 export const LOGIN_SECTION = 'login';

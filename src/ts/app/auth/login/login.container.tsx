@@ -15,7 +15,7 @@ import {
 
 import { IAppState } from '../../app.interface';
 import { ROUTER_PATHS } from '../../app.routers';
-import { AccessConfigT } from '../../permission/permission.interface';
+import { AccessConfigT } from '../../permission';
 import {
   ILoginEntity,
   LOGIN_SECTION,
@@ -43,22 +43,22 @@ export class LoginContainer extends BaseContainer<IFormContainerInternalProps<IL
 
   public render(): JSX.Element {
     const props = this.props;
-    const entity = props.form.changes as ILoginEntity;
+    const changes = props.form.changes;
 
     return (
         <FormLayoutContainer title='Log in'
                              {...props}>
-          <FormContainer settings={{actionText: 'Next'}}
+          <FormContainer settings={{actionText: 'Next', className: 'app-auth-form'}}
                          {...props}>
-            <TextField name='email'
-                       type='email'
-                       value={entity.email}
-                       label='Email'
+            <TextField name='login'
+                       type='text'
+                       value={changes.login}
+                       label='Login'
                        autoFocus={true}
                        required={true}/>
             <TextField name='password'
                        type='password'
-                       value={entity.password}
+                       value={changes.password}
                        label='Password'
                        required={true}/>
           </FormContainer>
