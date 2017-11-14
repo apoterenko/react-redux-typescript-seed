@@ -1,5 +1,3 @@
-import { LoggerFactory } from 'ts-smart-logger';
-
 import {
   bootstrap,
   appContainer,
@@ -25,10 +23,10 @@ import './api/api.module';
 
 import { AppContainer } from './app.container';
 import { ROUTER_PATHS } from './app.routers';
-import { PermissionService } from './permission/permission.service';
 import { rolesReducers } from './permission';
 import { authReducers } from './auth';
 import { AppPermissions } from './app.permissions';
+import { AppPermissionService } from './permission';
 
 const applicationSettings: IApplicationSettings = {
   ...DEFAULT_APPLICATION_SETTINGS,
@@ -39,13 +37,14 @@ const applicationSettings: IApplicationSettings = {
 // Services
 appContainer.unbind(DI_TYPES.Settings);
 appContainer.bind(DI_TYPES.Settings).toConstantValue(applicationSettings);
-appContainer.bind(DI_TYPES.Permission).to(PermissionService).inSingletonScope();
+appContainer.bind(DI_TYPES.Permission).to(AppPermissionService).inSingletonScope();
 appContainer.bind(DI_TYPES.Translate).toConstantValue((k) => k);
 
 // Routes
 appContainer.bind(DI_TYPES.Routes).toConstantValue({
   profile: ROUTER_PATHS.HOME,
   login: ROUTER_PATHS.AUTH_LOGIN,
+  logout: ROUTER_PATHS.LOGOUT,
   home: ROUTER_PATHS.HOME,
 } as IRoutes);
 
@@ -64,9 +63,6 @@ makeStore(
     },
     applicationSettings
 );
-
-// Configuring of external modules
-LoggerFactory.configure();
 
 // Bootstrap app
 bootstrap(AppContainer);

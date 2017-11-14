@@ -1,2 +1,2 @@
-import './totp/totp.module';
+import './totp/sms.module';
 import './login/login.module';
