@@ -20,6 +20,7 @@ import './main/main.module';
 import './permission/permission.module';
 import './dictionary/dictionaries.module';
 import './api/api.module';
+import './app.effects';
 
 import { AppContainer } from './app.container';
 import { ROUTER_PATHS } from './app.routers';

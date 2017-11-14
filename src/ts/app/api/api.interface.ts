@@ -1,6 +1,8 @@
 import { IAuthApi } from '../auth';
-import { IPermissionApi } from '../permission/api/permission-api.interface';
+import { IPermissionApi } from '../permission';
+import { IAccountApi } from '../account';
 
 export interface IApi extends IAuthApi,
-                              IPermissionApi {
+                              IPermissionApi,
+                              IAccountApi {
 }

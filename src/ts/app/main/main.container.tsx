@@ -11,14 +11,13 @@ import {
 import { IAppState } from '../app.interface';
 import { AccessConfigT } from '../permission';
 import { ROUTER_PATHS } from '../app.routers';
-import { AppPermissions } from '../app.permissions';
 
 @connector<IAppState, AccessConfigT>({
   routeConfig: {
     type: ContainerVisibilityTypeEnum.PRIVATE,
     path: ROUTER_PATHS.HOME,
   },
-  accessConfig: [AppPermissions.ROLES_VIEW],
+  sectionName: false,
   mappers: [
     ...defaultMappers
   ],

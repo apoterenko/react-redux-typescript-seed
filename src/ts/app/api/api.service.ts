@@ -20,11 +20,21 @@ import {
   IRoleEntity,
   IRightEntity,
 } from '../permission';
+import { AccountApiService, IAccountApi, IAccountEntity } from '../account';
 
 @injectable()
 export class ApiService implements IApi {
   @lazyInject(AuthApiService) private authApi: IAuthApi;
+  @lazyInject(AccountApiService) private accountApi: IAccountApi;
   @lazyInject(PermissionApiService) private permissionApi: IPermissionApi;
+
+  public accountGet(): Promise<IAccountEntity> {
+    return this.accountApi.accountGet();
+  }
+
+  public accountRights(): Promise<string[]> {
+    return this.accountApi.accountRights();
+  }
 
   public authEnd(): Promise<boolean> {
     return this.authApi.authEnd();
