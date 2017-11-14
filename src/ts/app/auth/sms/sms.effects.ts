@@ -4,7 +4,7 @@ import {
   provideInSingleton,
   BaseEffects,
   FormActionBuilder,
-} from 'core';
+} from 'react-application-core';
 
 import { IAuthApi } from '../api';
 import { SMS_SECTION } from './sms.interface';

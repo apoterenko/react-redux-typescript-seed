@@ -1,4 +1,4 @@
-import { IValueable } from 'core';
+import { IValueable } from 'react-application-core';
 
 export interface ISmsEntity extends IValueable<string> {
 }

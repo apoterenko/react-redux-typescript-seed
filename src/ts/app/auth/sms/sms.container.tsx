@@ -12,12 +12,12 @@ import {
   ContainerVisibilityTypeEnum,
   IBaseContainerInternalProps,
   connector,
-} from 'core';
+} from 'react-application-core';
 
 import { IAppState } from '../../app.interface';
 import { ROUTER_PATHS } from '../../app.routers';
 import { AccessConfigT } from '../../permission';
-import { Spacer, Footer, Help } from '../../component';
+import { Spacer, Footer } from '../../component';
 import { SMS_SECTION, ISmsEntity } from './sms.interface';
 
 @connector<IAppState, AccessConfigT>({
@@ -51,10 +51,8 @@ class SmsContainer extends BaseContainer<IFormContainerInternalProps<ISmsEntity>
           </Link>
           <Spacer/>
           <Link to={ROUTER_PATHS.AUTH_LOGIN}>
-          {this.t('Log in')}
-        </Link>
-          <Spacer/>
-          <Help topic='sms'/>
+            {this.t('Log in')}
+          </Link>
         </Footer>
     );
 
