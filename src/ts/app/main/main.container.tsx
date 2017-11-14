@@ -9,7 +9,7 @@ import {
 } from 'react-application-core';
 
 import { IAppState } from '../app.interface';
-import { AccessConfigT } from '../permission/permission.interface';
+import { AccessConfigT } from '../permission';
 import { ROUTER_PATHS } from '../app.routers';
 import { AppPermissions } from '../app.permissions';
 
@@ -33,10 +33,8 @@ class MainContainer extends BaseContainer<{}, {}> {
     const props = this.props;
     return (
       <DefaultLayoutContainer {...props}>
-        <div className='mdc-layout-grid'>
-          <div className='mdc-layout-grid__inner'>
-            {this.t('This is a main page')}
-          </div>
+        <div className='app-center-layout app-full-layout'>
+          {this.settings.companyName}
         </div>
       </DefaultLayoutContainer>
     );
