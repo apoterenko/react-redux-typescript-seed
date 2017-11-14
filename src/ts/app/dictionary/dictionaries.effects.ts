@@ -1,19 +1,20 @@
 import { EffectsService } from 'redux-effects-promise';
 
 import {
-  provide,
+  provideInSingleton,
   DictionariesActionBuilder,
   BaseEffects,
 } from 'react-application-core';
 
 import { RIGHTS_DICTIONARY } from './dictionaries.interface';
-import { IApi, IRight } from '../api/api.interface';
+import { IApi } from '../api';
+import { IRightEntity } from '../permission';
 
-@provide(DictionariesEffects)
+@provideInSingleton(DictionariesEffects)
 export class DictionariesEffects extends BaseEffects<IApi> {
 
   @EffectsService.effects(DictionariesActionBuilder.buildLoadActionType(RIGHTS_DICTIONARY))
-  public onLoadRightsList(): Promise<IRight[]> {
-    return this.api.loadRightsList();
+  public onLoadRightsList(): Promise<IRightEntity[]> {
+    return this.api.loadRights();
   }
 }
