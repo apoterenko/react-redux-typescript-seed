@@ -9,7 +9,7 @@ import {
 } from 'react-application-core';
 
 import { ROLES_SECTION } from './roles.interface';
-import { ROLE_SECTION } from './role/role.interface';
+import { ROLE_SECTION } from './role';
 
 export const rolesReducers = combineReducers({
   list: filter(listReducer, reducerSectionFilter(ROLES_SECTION)),
