@@ -9,7 +9,7 @@
     "@types/react-dom": "^15.5.1",
     "core-js": "^2.4.1",
     "react": "^15.6.1",
-    "react-application-core": "0.0.107",
+    "react-application-core": "0.0.108",
     "react-dom": "^15.6.1",
     "ts-node": "^3.3.0",
     "tslib": "^1.7.1",

@@ -47,7 +47,7 @@ class RolesContainer extends BaseContainer<IRolesContainerInternalProps, {}> {
         <DefaultLayoutContainer {...props}
                                 navigationControls={<SearchToolbarContainer {...props}/>}>
           <ListContainer listOptions={{
-                           itemOptions: { renderer: this.itemRenderer },
+                           itemOptions: { itemValue: this.itemValue },
                            addAction: this.permissionService.isAccessible(AppPermissions.ROLE_ADD),
                          }}
                          {...props}/>
@@ -55,9 +55,9 @@ class RolesContainer extends BaseContainer<IRolesContainerInternalProps, {}> {
     );
   }
 
-  private itemRenderer = (item: IRoleEntity) => (
+  private itemValue = (item: IRoleEntity): JSX.Element => (
      <span>
-        {item.name || item.id}
+       {item.name} {this.nc.id(item.id)}
      </span>
   )
 }
