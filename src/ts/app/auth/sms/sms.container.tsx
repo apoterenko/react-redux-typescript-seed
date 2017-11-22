@@ -60,7 +60,7 @@ class SmsContainer extends BaseContainer<IFormContainerInternalProps<ISmsEntity>
         <FormLayoutContainer title='Authenticate'
                              footer={footer}
                              {...props}>
-          <FormContainer settings={{actionText: 'Next', className: 'app-auth-form'}}
+          <FormContainer formOptions={{actionText: 'Next', className: 'app-auth-form'}}
                          {...props}>
             <TextField name='value'
                        value={changes.value}

@@ -39,7 +39,6 @@ const applicationSettings: IApplicationSettings = {
 appContainer.unbind(DI_TYPES.Settings);
 appContainer.bind(DI_TYPES.Settings).toConstantValue(applicationSettings);
 appContainer.bind(DI_TYPES.Permission).to(AppPermissionService).inSingletonScope();
-appContainer.bind(DI_TYPES.Translate).toConstantValue((k) => k);
 
 // Routes
 appContainer.bind(DI_TYPES.Routes).toConstantValue({
