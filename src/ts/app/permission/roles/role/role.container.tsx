@@ -4,12 +4,10 @@ import {
   BaseContainer,
   FormContainer,
   FormDialog,
-  IFormDialogInternalProps,
   TextField,
   toSelectOptions,
-  entityMapper,
+  listWrapperEntityMapper,
   formMapper,
-  IDialog,
   DefaultLayoutContainer,
   defaultMappers,
   ChipsField,
@@ -34,10 +32,7 @@ import { AppPermissions } from '../../../app.permissions';
   mappers: [
     ...defaultMappers,
     (state) => formMapper(state.roles.role),
-    (state: IAppState) => entityMapper(
-        state.roles.list ? state.roles.list.selected : null,
-        state.roles.role
-    )
+    (state: IAppState) => listWrapperEntityMapper(state.roles, state.roles.role)
   ],
 })
 class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
@@ -49,7 +44,6 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
   constructor(props: IRoleContainerInternalProps) {
     super(props);
     this.loadRights = this.loadRights.bind(this);
-    this.navigationControlHandler = this.navigationControlHandler.bind(this);
   }
 
   public render(): JSX.Element {
@@ -65,7 +59,7 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
 
     return (
         <DefaultLayoutContainer navigationControlType='arrow_back'
-                                navigationControlHandler={this.navigationControlHandler}
+                                navigationControlHandler={this.activateFormDialog}
                                 title={title}
                                 {...props}>
           <FormContainer {...props}>
@@ -91,9 +85,5 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
 
   private loadRights(): void {
     this.dispatchLoadDictionary(RIGHTS_DICTIONARY);
-  }
-
-  private navigationControlHandler(): void {
-    (this.refs.formDialog as IDialog<IFormDialogInternalProps>).activate();
   }
 }
