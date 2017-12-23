@@ -17,8 +17,9 @@ fieldset {
 	min-width: 100%;
 }
 
+@import '../ts/app/auth/auth';
 @import '../ts/app/component/component';
-@import '~react-application-core/react-application-core';
+@import '~react-application-core/rac.min';
 
 $mdc-theme-primary: #212121;
 @import '~material-components-web/material-components-web';

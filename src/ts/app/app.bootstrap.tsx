@@ -6,8 +6,8 @@ import {
   DEFAULT_APPLICATION_SETTINGS,
   IApplicationSettings,
   IRoutes,
-  INavigationListItem,
   ApplicationStorageTypeEnum,
+  INavigationListItemOptions,
 } from 'react-application-core';
 
 // Styles
@@ -45,12 +45,13 @@ appContainer.bind(DI_TYPES.Routes).toConstantValue({
   login: ROUTER_PATHS.AUTH_LOGIN,
   logout: ROUTER_PATHS.LOGOUT,
   home: ROUTER_PATHS.HOME,
+  accessDenied: ROUTER_PATHS.ACCESS_DENIED,
 } as IRoutes);
 
 // Menu
-const menu: INavigationListItem[] = [
-  {text: 'Roles', icon: 'list', link: ROUTER_PATHS.ROLES, accessConfig: AppPermissions.ROLES_VIEW},
-  {text: 'Exit', icon: 'exit_to_app', link: ROUTER_PATHS.LOGOUT}
+const menu: INavigationListItemOptions[] = [
+  {label: 'Roles', icon: 'list', link: ROUTER_PATHS.ROLES, accessConfig: AppPermissions.ROLES_VIEW},
+  {label: 'Exit', icon: 'exit_to_app', link: ROUTER_PATHS.LOGOUT}
 ];
 appContainer.bind(DI_TYPES.Menu).toConstantValue(menu);
 

@@ -5,4 +5,5 @@ export const ROUTER_PATHS = {
   LOGOUT: '/logout',
   AUTH_SMS: '/auth/sms',
   AUTH_LOGIN: '/auth/login',
+  ACCESS_DENIED: '/access/denied',
 };

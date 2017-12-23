@@ -48,7 +48,7 @@ export class LoginContainer extends BaseContainer<IFormContainerInternalProps<IL
     return (
         <FormLayoutContainer title='Log in'
                              {...props}>
-          <FormContainer formOptions={{actionText: 'Next', className: 'app-auth-form'}}
+          <FormContainer formOptions={{actionText: 'Next', className: 'app-auth-form', actionIcon: 'done'}}
                          {...props}>
             <TextField name='login'
                        type='text'

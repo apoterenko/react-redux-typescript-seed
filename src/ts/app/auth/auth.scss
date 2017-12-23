@@ -1,0 +1,14 @@
+.app-auth-form {
+  background-color: white;
+
+  .mdc-card__primary {
+    min-height: 280px;
+  }
+
+  .mdc-text-field-helptext--validation-msg {
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

@@ -3,6 +3,8 @@ import * as React from 'react';
 import {
   ApplicationContainer,
   INITIAL_PERMISSION_STATE,
+  PROGRESSABLE_FIELD_NAME,
+  filterBy,
 } from 'react-application-core';
 
 import { ILoginEntity } from './auth';
@@ -33,6 +35,10 @@ export class AppContainer extends ApplicationContainer<IAppState,
     delete loginState.progress;
     delete loginEntity.password;
 
+    filterBy(state, (key, value) => (
+      key !== PROGRESSABLE_FIELD_NAME
+      && key !== 'password'
+    ));
     return super.clearStateBeforeSerialization(state);
   }
 }

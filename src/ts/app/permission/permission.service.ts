@@ -24,6 +24,10 @@ export class AppPermissionService extends PermissionService<AccessConfigT> {
         .reduce((pv, cv) => pv && cv);
   }
 
+  public isAuthorized(): boolean {
+    return true; // TODO
+  }
+
   private get permissionState(): IPermissionsState {
     return this.appStore.getState().permission;
   }
