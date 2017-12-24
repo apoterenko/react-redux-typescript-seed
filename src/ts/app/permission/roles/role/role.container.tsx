@@ -6,6 +6,7 @@ import {
   FormDialog,
   TextField,
   toSelectOptions,
+  FORM_DIALOG_REF,
   listWrapperEntityMapper,
   formMapper,
   DefaultLayoutContainer,
@@ -48,36 +49,33 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
 
   public render(): JSX.Element {
     const props = this.props;
-    const entity = props.entity;
-    const entityId = entity ? entity.id : null;
-    const isNewEntity = !entityId;
     const dictionaries = props.dictionaries;
     const rights = dictionaries.rights && dictionaries.rights.data;
-    const title = isNewEntity
-        ? 'New role'
-        : `Role ${this.nc.id(entityId)}`;
+    const title = props.isNewEntity
+      ? 'New role'
+      : `Role ${this.nc.id(props.entityId)}`;
 
     return (
-        <DefaultLayoutContainer navigationControlType='arrow_back'
-                                navigationControlHandler={this.activateFormDialog}
-                                title={title}
-                                {...props}>
-          <FormContainer {...props}>
-            <TextField name='name'
-                       label='Name'
-                       autoFocus={true}
-                       required={true}/>
-            <ChipsField name='rights'
-                        label='Rights'
-                        options={toSelectOptions(rights)}
-                        onEmptyOptions={this.loadRights}
-                        useFilter={true}/>
-          </FormContainer>
-          <FormDialog ref='formDialog'
-                      onAccept={this.navigateToBack}
-                      {...props}>
-          </FormDialog>
-        </DefaultLayoutContainer>
+      <DefaultLayoutContainer navigationControlType='arrow_back'
+                              navigationControlHandler={this.activateFormDialog}
+                              title={title}
+                              {...props}>
+        <FormContainer {...props}>
+          <TextField name='name'
+                     label='Name'
+                     autoFocus={true}
+                     required={true}/>
+          <ChipsField name='rights'
+                      label='Rights'
+                      options={toSelectOptions(rights)}
+                      onEmptyOptions={this.loadRights}
+                      useFilter={true}
+                      valuesMessage='%d right(s)'/>
+        </FormContainer>
+        <FormDialog ref={FORM_DIALOG_REF}
+                    onAccept={this.navigateToBack}
+                    {...props}/>
+      </DefaultLayoutContainer>
     );
   }
 
