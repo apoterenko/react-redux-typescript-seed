@@ -10,6 +10,7 @@ import {
   ListContainer,
   ContainerVisibilityTypeEnum,
   IBaseContainerInternalProps,
+  disabledActionsListWrapperMapper,
   connector,
 } from 'react-application-core';
 
@@ -37,27 +38,26 @@ class RolesContainer extends BaseContainer<IRolesContainerInternalProps, {}> {
     sectionName: ROLES_SECTION,
   };
 
-  constructor(props: IRolesContainerInternalProps) {
-    super(props);
-  }
-
   public render(): JSX.Element {
     const props = this.props;
+    const header = <SearchToolbarContainer filterOptions={disabledActionsListWrapperMapper(props)}
+                                           {...props}/>;
     return (
-        <DefaultLayoutContainer {...props}
-                                headerItems={<SearchToolbarContainer {...props}/>}>
-          <ListContainer listOptions={{
-                           itemOptions: { tpl: this.tpl },
-                           addAction: this.permissionService.isAccessible(AppPermissions.ROLE_ADD),
-                         }}
-                         {...props}/>
-        </DefaultLayoutContainer>
+      <DefaultLayoutContainer headerItems={header}
+                              {...props}>
+        <ListContainer listOptions={{
+                        emptyMessage: 'Start a search',
+                        itemOptions: { tpl: this.tpl },
+                        addAction: this.permissionService.isAccessible(AppPermissions.ROLE_ADD),
+                       }}
+                       {...props}/>
+      </DefaultLayoutContainer>
     );
   }
 
   private tpl = (item: IRoleEntity): JSX.Element => (
-     <span>
+    <span>
        {item.name} {this.nc.id(item.id)}
-     </span>
+    </span>
   )
 }
