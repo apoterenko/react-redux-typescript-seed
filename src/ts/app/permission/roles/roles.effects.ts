@@ -10,6 +10,7 @@ import {
   makeUntouchedListEffectsProxy,
   makeFailedListEffectsProxy,
   makeEditedListEffectsProxy,
+  makeLockEffectsProxy,
 } from 'react-application-core';
 
 import { IApi } from '../../api/api.interface';
@@ -20,16 +21,17 @@ import { IAppState } from '../../app.interface';
 
 @provideInSingleton(RolesEffects)
 @effectsBy(
-    makeUntouchedListEffectsProxy<IAppState>({
-      section: ROLES_SECTION,
-      listWrapperStateResolver: (state) => state.roles,
-    }),
-    makeEditedListEffectsProxy<IRoleEntity, IAppState>({
-      section: ROLES_SECTION,
-      pathResolver: (role) => buildEntityRoute<IRoleEntity>(ROUTER_PATHS.ROLE, role),
-    }),
-    makeFilteredListEffectsProxy({ section: ROLES_SECTION }),
-    makeFailedListEffectsProxy(ROLES_SECTION)
+  makeUntouchedListEffectsProxy<IAppState>({
+    section: ROLES_SECTION,
+    listWrapperStateResolver: (state) => state.roles,
+  }),
+  makeEditedListEffectsProxy<IRoleEntity, IAppState>({
+    section: ROLES_SECTION,
+    pathResolver: (role) => buildEntityRoute<IRoleEntity>(ROUTER_PATHS.ROLE, role),
+  }),
+  makeFilteredListEffectsProxy({ section: ROLES_SECTION }),
+  makeFailedListEffectsProxy(ROLES_SECTION),
+  makeLockEffectsProxy(ROLES_SECTION)
 )
 export class RolesEffects extends BaseEffects<IApi> {
 

@@ -5,28 +5,29 @@ import {
   BaseContainer,
   DefaultLayoutContainer,
   ContainerVisibilityTypeEnum,
+  IBaseContainerInternalProps,
   connector,
 } from 'react-application-core';
 
 import { IAppState } from '../app.interface';
 import { AccessConfigT } from '../permission';
 import { ROUTER_PATHS } from '../app.routers';
+import { MAIN_SECTION } from './main.interface';
 
 @connector<IAppState, AccessConfigT>({
   routeConfig: {
     type: ContainerVisibilityTypeEnum.PRIVATE,
     path: ROUTER_PATHS.HOME,
   },
-  sectionName: false,
   mappers: [
     ...defaultMappers
   ],
 })
-class MainContainer extends BaseContainer<{}, {}> {
+class MainContainer extends BaseContainer<IBaseContainerInternalProps, {}> {
 
-  constructor(props: {}) {
-    super(props);
-  }
+  public static defaultProps: IBaseContainerInternalProps = {
+    sectionName: MAIN_SECTION,
+  };
 
   public render(): JSX.Element {
     const props = this.props;
