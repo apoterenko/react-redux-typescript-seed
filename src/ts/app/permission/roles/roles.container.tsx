@@ -46,7 +46,6 @@ class RolesContainer extends BaseContainer<IRolesContainerInternalProps, {}> {
       <DefaultLayoutContainer headerItems={header}
                               {...props}>
         <ListContainer listOptions={{
-                        emptyMessage: 'Start a search',
                         itemOptions: { tpl: this.tpl },
                         addAction: this.permissionService.isAccessible(AppPermissions.ROLE_ADD),
                        }}

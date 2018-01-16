@@ -33,7 +33,7 @@ import { AppPermissions } from '../../../app.permissions';
   mappers: [
     ...defaultMappers,
     (state) => formMapper(state.roles.role),
-    (state: IAppState) => listWrapperSelectedEntityMapper(state.roles, state.roles.role)
+    (state) => listWrapperSelectedEntityMapper(state.roles, state.roles.role)
   ],
 })
 class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
