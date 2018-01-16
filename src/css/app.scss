@@ -1,22 +1,3 @@
-html, body {
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	width: 100%;
-}
-
-#root {
-	height: 100%;
-	width: 100%;
-}
-
-fieldset {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	min-width: 100%;
-}
-
 @import '../ts/app/auth/auth';
 @import '../ts/app/component/component';
 @import '~react-application-core/rac.min';
@@ -25,41 +6,7 @@ fieldset {
 $mdc-theme-primary: #212121;
 @import '~material-components-web/material-components-web';
 
-.material-icons {
-	font-family: 'Material Icons';
-	font-weight: normal;
-	font-style: normal;
-	font-size: 24px;
-	display: inline-block;
-	line-height: 1;
-	text-transform: none;
-	letter-spacing: normal;
-	word-wrap: normal;
-	white-space: nowrap;
-	direction: ltr;
-	/* Support for all WebKit browsers. */
-	-webkit-font-smoothing: antialiased;
-	/* Support for Safari and Chrome. */
-	text-rendering: optimizeLegibility;
-	/* Support for Firefox. */
-	-moz-osx-font-smoothing: grayscale;
-	/* Support for IE. */
-	font-feature-settings: 'liga';
-}
-
-@font-face {
-	font-family: 'Material Icons';
-	font-style: normal;
-	font-weight: 400;
-	src: url(../media/font/MaterialIcons-Regular.eot); /* For IE6-8 */
-	src: local('Material Icons'),
-		local('MaterialIcons-Regular'),
-		url(../media/font/MaterialIcons-Regular.woff2) format('woff2'),
-		url(../media/font/MaterialIcons-Regular.woff) format('woff'),
-		url(../media/font/MaterialIcons-Regular.ttf) format('truetype');
-}
-
 // Override
-.mdc-button, .mdc-textfield {
+.mdc-button {
 	will-change: unset !important;
 }
