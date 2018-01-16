@@ -2,19 +2,19 @@
 
 #### Install
 
-npm install
-npm install --production
+* npm install
+* npm install --production
 
 #### Build
 
-npm run build
-npm run build:dev
-npm run build:prod
+* npm run build
+* npm run build:dev
+* npm run build:prod
 
 #### Debug
 
-npm run server:json
-npm start
+* npm run server:json
+* npm start
 
 # Live demo
 
