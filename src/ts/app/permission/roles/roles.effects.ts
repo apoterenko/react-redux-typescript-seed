@@ -26,7 +26,7 @@ import { IAppState } from '../../app.interface';
     listWrapperStateResolver: (state) => state.roles,
   }),
   makeEditedListEffectsProxy<IRoleEntity, IAppState>({
-    section: ROLES_SECTION,
+    listSection: ROLES_SECTION,
     pathResolver: (role) => buildEntityRoute<IRoleEntity>(ROUTER_PATHS.ROLE, role),
   }),
   makeFilteredListEffectsProxy({ section: ROLES_SECTION }),
