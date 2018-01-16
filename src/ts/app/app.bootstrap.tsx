@@ -11,7 +11,7 @@ import {
 } from 'react-application-core';
 
 // Styles
-import '../../css/app.scss';
+import './app.bootstrap.scss';
 
 // Modules
 import 'react-application-core/module';
