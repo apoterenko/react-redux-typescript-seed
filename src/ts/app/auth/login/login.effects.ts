@@ -7,7 +7,7 @@ import {
 } from 'react-application-core';
 
 import { IApi } from '../../api';
-import { ROUTER_PATHS } from '../../app.routers';
+import { ROUTER_PATHS } from '../../app.routes';
 import { LOGIN_SECTION } from './login.interface';
 
 @provideInSingleton(LoginEffects)

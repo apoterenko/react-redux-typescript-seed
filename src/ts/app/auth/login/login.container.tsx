@@ -14,7 +14,7 @@ import {
 } from 'react-application-core';
 
 import { IAppState } from '../../app.interface';
-import { ROUTER_PATHS } from '../../app.routers';
+import { ROUTER_PATHS } from '../../app.routes';
 import { AccessConfigT } from '../../permission';
 import {
   ILoginEntity,

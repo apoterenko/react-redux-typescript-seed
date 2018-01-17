@@ -20,7 +20,7 @@ import {
 import { IRoleContainerInternalProps, ROLE_SECTION } from './role.interface';
 import { IAppState } from '../../../app.interface';
 import { RIGHTS_DICTIONARY } from '../../../dictionary';
-import { ROUTER_PATHS } from '../../../app.routers';
+import { ROUTER_PATHS } from '../../../app.routes';
 import { AccessConfigT } from '../../permission.interface';
 import { AppPermissions } from '../../../app.permissions';
 

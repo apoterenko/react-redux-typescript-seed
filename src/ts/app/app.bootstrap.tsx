@@ -23,7 +23,7 @@ import './api/api.module';
 import './app.effects';
 
 import { AppContainer } from './app.container';
-import { ROUTER_PATHS } from './app.routers';
+import { ROUTER_PATHS } from './app.routes';
 import { rolesReducers } from './permission';
 import { authReducers } from './auth';
 import { AppPermissions } from './app.permissions';

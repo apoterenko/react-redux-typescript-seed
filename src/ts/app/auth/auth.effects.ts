@@ -4,7 +4,7 @@ import { provideInSingleton, BaseEffects } from 'react-application-core';
 
 import { IAuthApi } from './api';
 import { AUTH_DONE_ACTION_TYPE } from './auth.interface';
-import { ROUTER_PATHS } from '../app.routers';
+import { ROUTER_PATHS } from '../app.routes';
 
 @provideInSingleton(AuthEffects)
 export class AuthEffects extends BaseEffects<IAuthApi> {

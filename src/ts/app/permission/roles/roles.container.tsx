@@ -14,7 +14,7 @@ import {
   connector,
 } from 'react-application-core';
 
-import { ROUTER_PATHS } from '../../app.routers';
+import { ROUTER_PATHS } from '../../app.routes';
 import { IRolesContainerInternalProps, ROLES_SECTION } from './roles.interface';
 import { IAppState } from '../../app.interface';
 import { AccessConfigT, IRoleEntity } from '../permission.interface';

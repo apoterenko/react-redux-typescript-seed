@@ -11,7 +11,7 @@ import {
 
 import { IAppState } from '../app.interface';
 import { AccessConfigT } from '../permission';
-import { ROUTER_PATHS } from '../app.routers';
+import { ROUTER_PATHS } from '../app.routes';
 import { MAIN_SECTION } from './main.interface';
 
 @connector<IAppState, AccessConfigT>({

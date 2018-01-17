@@ -14,7 +14,7 @@ import {
 } from 'react-application-core';
 
 import { IApi } from '../../api/api.interface';
-import { ROUTER_PATHS } from '../../app.routers';
+import { ROUTER_PATHS } from '../../app.routes';
 import { ROLES_SECTION } from './roles.interface';
 import { IRoleEntity } from '../permission.interface';
 import { IAppState } from '../../app.interface';
