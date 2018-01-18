@@ -29,6 +29,6 @@ export class AppPermissionService extends PermissionService<AccessConfigT> {
   }
 
   private get permissionState(): IPermissionsState {
-    return this.appStore.getState().permission;
+    return this.appStore.getState().permissions;
   }
 }
