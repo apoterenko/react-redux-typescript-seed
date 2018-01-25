@@ -20,7 +20,7 @@ export class AppEffects extends ApplicationEffects<IApi> {
   public onInit(): IEffectsAction[] {
     return super.onInit().concat(
         this.permissionService.isAuthorized()
-            ? this.buildApplicationPrepareAction()
+            ? ApplicationActionBuilder.buildPrepareAction()
             : []
     );
   }
