@@ -45,7 +45,6 @@ appContainer.bind(DI_TYPES.Routes).toConstantValue({
   login: ROUTER_PATHS.AUTH_LOGIN,
   logout: ROUTER_PATHS.LOGOUT,
   home: ROUTER_PATHS.HOME,
-  accessDenied: ROUTER_PATHS.ACCESS_DENIED,
 } as IRoutes);
 
 // Menu
