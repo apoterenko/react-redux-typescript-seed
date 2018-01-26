@@ -3,10 +3,9 @@ import {
   provideInSingleton,
   BaseTransport,
   nvlEmpty,
-  IMultiFieldAttributes,
+  toEntityIds,
 } from 'react-application-core';
 
-import { toActualSnapshot } from '../../util/field';
 import { IPermissionApi } from './permission-api.interface';
 import { IRightEntity, IRoleEntity } from '../permission.interface';
 
@@ -19,7 +18,7 @@ export class PermissionApiService extends BaseTransport implements IPermissionAp
       addApi: 'store.role.add',
       editApi: 'store.role.edit',
       extraParams: {
-        rights: toActualSnapshot(apiEntity.changes.rights as IMultiFieldAttributes),
+        rights: toEntityIds(apiEntity.changes.rights),
       },
     });
   }

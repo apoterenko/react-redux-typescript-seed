@@ -1,12 +1,8 @@
 import {
-  IApplicationPermissionService,
   IApplicationPermissionsState,
   INamedEntity,
-  IMultiFieldAttributes,
+  MultiFieldEntityT,
 } from 'react-application-core';
-
-export interface IPermissionsService extends IApplicationPermissionService<AccessConfigT> {
-}
 
 export interface IPermissionsState extends IApplicationPermissionsState<PermissionsT> {
 }
@@ -18,5 +14,5 @@ export interface IRightEntity extends INamedEntity {
 }
 
 export interface IRoleEntity extends INamedEntity {
-  rights: IRightEntity[]|IMultiFieldAttributes;
+  rights: MultiFieldEntityT<IRightEntity>;
 }
