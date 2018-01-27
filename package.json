@@ -7,7 +7,7 @@
     "@types/node": "^8.0.16",
     "@types/react": "^15.0.38",
     "@types/react-dom": "^15.5.1",
-    "react-application-core": "0.0.160"
+    "react-application-core": "0.0.161"
   },
   "devDependencies": {
     "eslint": "^4.15.0",
