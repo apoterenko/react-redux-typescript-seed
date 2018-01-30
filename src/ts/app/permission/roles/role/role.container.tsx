@@ -56,8 +56,10 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
       : `Role ${this.nc.id(props.entityId)}`;
 
     return (
-      <DefaultLayoutContainer navigationControlType='arrow_back'
-                              navigationControlHandler={this.activateFormDialog}
+      <DefaultLayoutContainer headerOptions={{
+                                navigationActionType: 'arrow_back',
+                                navigationActionHandler: this.activateFormDialog,
+                              }}
                               title={title}
                               {...props}>
         <FormContainer {...props}>

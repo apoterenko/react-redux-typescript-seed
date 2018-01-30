@@ -43,7 +43,7 @@ class RolesContainer extends BaseContainer<IRolesContainerInternalProps, {}> {
     const header = <SearchToolbarContainer filterOptions={disabledActionsListWrapperMapper(props)}
                                            {...props}/>;
     return (
-      <DefaultLayoutContainer headerItems={header}
+      <DefaultLayoutContainer headerOptions={{ items: header }}
                               {...props}>
         <ListContainer listOptions={{
                         itemOptions: { tpl: this.tpl },
