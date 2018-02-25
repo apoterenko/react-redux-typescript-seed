@@ -57,9 +57,9 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
 
     return (
       <DefaultLayoutContainer headerOptions={{
-        navigationActionType: 'arrow_back',
-        navigationActionHandler: this.activateFormDialog,
-      }}
+                                navigationActionType: 'arrow_back',
+                                navigationActionHandler: this.activateFormDialog,
+                              }}
                               title={title}
                               {...props}>
         <FormContainer {...props}>
@@ -82,7 +82,7 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
           }
         </FormContainer>
         <FormDialog ref={FORM_DIALOG_REF}
-                    onAccept={this.navigateToBack}
+                    onAccept={this.dispatchResetFormAndNavigateToBack}
                     {...props}/>
       </DefaultLayoutContainer>
     );
