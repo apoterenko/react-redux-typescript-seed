@@ -17,6 +17,7 @@ import {
   connector,
   LayoutBuilder,
   LayoutEnum,
+  uuid,
 } from 'react-application-core';
 
 import { IRoleContainerInternalProps, ROLE_SECTION } from './role.interface';
@@ -44,7 +45,7 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
     sectionName: ROLE_SECTION,
   };
 
-  private layoutBuilder = new LayoutBuilder(ROLE_SECTION);
+  private layoutBuilder = new LayoutBuilder(uuid());
 
   public render(): JSX.Element {
     const props = this.props;
