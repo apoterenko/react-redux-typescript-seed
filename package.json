@@ -1,6 +1,6 @@
 {
   "name": "react-redux-typescript-webpack-seed",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "dependencies": {
     "@types/core-js": "^0.9.42",
