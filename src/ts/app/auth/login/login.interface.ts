@@ -1,7 +1,7 @@
-import { IPasswordable, ILoginable } from 'react-application-core';
+import { ILoginWrapper, IPasswordWrapper } from 'react-application-core';
 
-export interface ILoginEntity extends IPasswordable,
-                                      ILoginable {
+export interface ILoginEntity extends IPasswordWrapper,
+                                      ILoginWrapper {
 }
 
 export const LOGIN_SECTION = 'login';

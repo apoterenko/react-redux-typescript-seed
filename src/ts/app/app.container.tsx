@@ -3,8 +3,8 @@ import * as React from 'react';
 import {
   ApplicationContainer,
   INITIAL_PERMISSION_STATE,
-  PROGRESSABLE_FIELD_NAME,
-  filterBy,
+  NOT_PASSWORD_FIELD_PREDICATE,
+  NOT_PROGRESS_FIELD_PREDICATE,
 } from 'react-application-core';
 
 import { IAppState } from './app.interface';
@@ -18,13 +18,10 @@ export class AppContainer extends ApplicationContainer<IAppState> {
     state.user = {};
     state.permissions = INITIAL_PERMISSION_STATE;
 
-    // --------------------
-    // Business logic state
-    // --------------------
-    filterBy(state, (key, value) => (
-      key !== PROGRESSABLE_FIELD_NAME
-      && key !== 'password'
-    ));
-    return super.clearStateBeforeSerialization(state);
+    return super.clearStateBeforeSerialization(
+      state,
+      NOT_PROGRESS_FIELD_PREDICATE,
+      NOT_PASSWORD_FIELD_PREDICATE
+    );
   }
 }

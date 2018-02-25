@@ -42,7 +42,7 @@ appContainer.rebind(DI_TYPES.Permission).to(AppPermissionService).inSingletonSco
 // Routes
 appContainer.bind(DI_TYPES.Routes).toConstantValue({
   profile: ROUTER_PATHS.HOME,
-  login: ROUTER_PATHS.AUTH_LOGIN,
+  signIn: ROUTER_PATHS.AUTH_LOGIN,
   logout: ROUTER_PATHS.LOGOUT,
   home: ROUTER_PATHS.HOME,
 } as IRoutes);

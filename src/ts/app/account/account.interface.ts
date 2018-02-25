@@ -1,8 +1,8 @@
 import {
   IUser,
-  IPasswordable,
+  IPasswordWrapper,
 } from 'react-application-core';
 
 export interface IAccountEntity extends IUser,
-                                        IPasswordable {
+                                        IPasswordWrapper {
 }

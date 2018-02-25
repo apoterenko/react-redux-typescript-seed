@@ -4,14 +4,14 @@ import { injectable } from 'inversify';
 import {
   DI_TYPES,
   lazyInject,
-  PermissionService,
+  PermissionsService,
 } from 'react-application-core';
 
 import { IPermissionsState, AccessConfigT } from './permission.interface';
 import { IAppState } from '../app.interface';
 
 @injectable()
-export class AppPermissionService extends PermissionService<AccessConfigT> {
+export class AppPermissionService extends PermissionsService<AccessConfigT> {
 
   @lazyInject(DI_TYPES.Store) private appStore: Store<IAppState>;
 

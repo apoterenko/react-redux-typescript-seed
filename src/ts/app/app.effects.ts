@@ -5,6 +5,8 @@ import {
   ApplicationActionBuilder,
   ApplicationEffects,
   effectsBy,
+  UserActionBuilder,
+  PermissionsActionBuilder,
   makeApplicationPrepareErrorEffectsProxy,
 } from 'react-application-core';
 
@@ -29,9 +31,9 @@ export class AppEffects extends ApplicationEffects<IApi> {
   public onPrepare(): Promise<IEffectsAction[]> {
     return Promise.all<IAccountEntity | PermissionsT>([this.api.accountGet(), this.api.accountRights()])
         .then((data: Array<IAccountEntity | PermissionsT>) => ([
-          this.buildUserUpdateAction(data[0] as IAccountEntity),
-          this.buildPermissionUpdateAction(data[1] as PermissionsT),
-          this.buildApplicationReadyAction()
+          UserActionBuilder.buildUpdateAction(data[0] as IAccountEntity),
+          PermissionsActionBuilder.buildUpdateAction(data[1] as PermissionsT),
+          ApplicationActionBuilder.buildReadyAction()
         ]));
   }
 }

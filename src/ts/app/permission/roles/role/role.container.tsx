@@ -42,11 +42,6 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
     sectionName: ROLE_SECTION,
   };
 
-  constructor(props: IRoleContainerInternalProps) {
-    super(props);
-    this.loadRights = this.loadRights.bind(this);
-  }
-
   public render(): JSX.Element {
     const props = this.props;
     const dictionaries = props.dictionaries;
@@ -70,18 +65,14 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
           <ChipsField name='rights'
                       label='Rights'
                       options={toSelectOptions(rights)}
-                      onEmptyOptions={this.loadRights}
-                      useFilter={true}
-                      valuesMessage='%d right(s)'/>
+                      bindToDictionary={RIGHTS_DICTIONARY}
+                      menuOptions={{useFilter: true, renderToCenterOfBody: true}}
+                      displayMessage='%d right(s)'/>
         </FormContainer>
         <FormDialog ref={FORM_DIALOG_REF}
                     onAccept={this.navigateToBack}
                     {...props}/>
       </DefaultLayoutContainer>
     );
-  }
-
-  private loadRights(): void {
-    this.dispatchLoadDictionary(RIGHTS_DICTIONARY);
   }
 }
