@@ -15,6 +15,8 @@ import {
   ContainerVisibilityTypeEnum,
   IBaseContainerInternalProps,
   connector,
+  LayoutBuilder,
+  LayoutEnum,
 } from 'react-application-core';
 
 import { IRoleContainerInternalProps, ROLE_SECTION } from './role.interface';
@@ -42,6 +44,8 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
     sectionName: ROLE_SECTION,
   };
 
+  private layoutBuilder = new LayoutBuilder(ROLE_SECTION);
+
   public render(): JSX.Element {
     const props = this.props;
     const dictionaries = props.dictionaries;
@@ -52,22 +56,29 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
 
     return (
       <DefaultLayoutContainer headerOptions={{
-                                navigationActionType: 'arrow_back',
-                                navigationActionHandler: this.activateFormDialog,
-                              }}
+        navigationActionType: 'arrow_back',
+        navigationActionHandler: this.activateFormDialog,
+      }}
                               title={title}
                               {...props}>
         <FormContainer {...props}>
-          <TextField name='name'
-                     label='Name'
-                     autoFocus={true}
-                     required={true}/>
-          <ChipsField name='rights'
-                      label='Rights'
-                      options={toSelectOptions(rights)}
-                      bindToDictionary={RIGHTS_DICTIONARY}
-                      menuOptions={{useFilter: true, renderToCenterOfBody: true}}
-                      displayMessage='%d right(s)'/>
+          {
+            this.layoutBuilder.build({
+              layout: LayoutEnum.VERTICAL,
+              children: [
+                <TextField name='name'
+                           label='Name'
+                           autoFocus={true}
+                           required={true}/>,
+                <ChipsField name='rights'
+                            label='Rights'
+                            options={toSelectOptions(rights)}
+                            bindToDictionary={RIGHTS_DICTIONARY}
+                            menuOptions={{ useFilter: true, renderToCenterOfBody: true }}
+                            displayMessage='%d right(s)'/>
+              ],
+            })
+          }
         </FormContainer>
         <FormDialog ref={FORM_DIALOG_REF}
                     onAccept={this.navigateToBack}
