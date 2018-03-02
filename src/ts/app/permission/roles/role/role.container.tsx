@@ -82,7 +82,7 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
           }
         </FormContainer>
         <FormDialog ref={FORM_DIALOG_REF}
-                    onAccept={this.dispatchResetFormAndNavigateToBack}
+                    onAccept={this.navigateToBack}
                     {...props}/>
       </DefaultLayoutContainer>
     );

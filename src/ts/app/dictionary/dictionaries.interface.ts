@@ -1,12 +1,15 @@
 import {
-  IDictionariesDataState,
-  IApplicationDictionariesState,
+  IDictionariesWrapper,
+  IDictionaryEntity,
 } from 'react-application-core';
 
 import { IRightEntity } from '../permission';
 
-export interface IDictionariesState extends IApplicationDictionariesState {
-  rights?: IDictionariesDataState<IRightEntity>;
+export interface IAppDictionaries {
+  rights?: IDictionaryEntity<IRightEntity>;
+}
+
+export interface IAppDictionariesWrapper extends IDictionariesWrapper<IAppDictionaries> {
 }
 
 export const RIGHTS_DICTIONARY = 'rights';

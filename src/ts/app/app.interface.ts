@@ -5,9 +5,9 @@ import {
 
 import { IAuthState } from './auth';
 import { IRolesState, PermissionsT } from './permission';
-import { IDictionariesState } from './dictionary';
+import { IAppDictionaries } from './dictionary';
 
-export interface IAppState extends IApplicationState<IDictionariesState>,
+export interface IAppState extends IApplicationState<IAppDictionaries>,
                                    IApplicationPermissionsWrapperState<PermissionsT> {
   auth: IAuthState;
   roles: IRolesState;
