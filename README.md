@@ -22,6 +22,8 @@
 
 # Preview
 
+![intro](preview/intro.png)
+
 ![0](preview/000.png)
 
 ![1](preview/001.png)
