@@ -33,7 +33,7 @@ import { ROLE_SECTION } from './role';
   makeFilteredListEffectsProxy({ section: ROLES_SECTION }),
   makeFailedListEffectsProxy(ROLES_SECTION)
 )
-export class RolesEffects extends BaseEffects<IApi> {
+class RolesEffects extends BaseEffects<IApi> {
 
   @EffectsService.effects(ListActionBuilder.buildLoadActionType(ROLES_SECTION))
   public $onRolesSearch(_: IEffectsAction, state: IAppState): Promise<IRoleEntity[]> {

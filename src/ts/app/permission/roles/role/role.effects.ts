@@ -23,7 +23,7 @@ import { IRoleEntity } from '../../permission.interface';
       formSection: ROLE_SECTION,
     })
 )
-export class RoleEffects extends BaseEffects<IApi> {
+class RoleEffects extends BaseEffects<IApi> {
 
   @EffectsService.effects(FormActionBuilder.buildSubmitActionType(ROLE_SECTION))
   public onSaveRole(action: IEffectsAction): Promise<IRoleEntity> {
