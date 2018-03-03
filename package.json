@@ -1,13 +1,13 @@
 {
   "name": "react-redux-typescript-webpack-seed",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "MIT",
   "dependencies": {
     "@types/core-js": "^0.9.42",
     "@types/node": "^8.0.16",
     "@types/react": "^15.0.38",
     "@types/react-dom": "^15.5.1",
-    "react-application-core": "0.0.180"
+    "react-application-core": "0.0.181"
   },
   "devDependencies": {
     "eslint": "^4.15.0",
