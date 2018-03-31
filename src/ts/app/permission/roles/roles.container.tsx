@@ -45,9 +45,9 @@ class RolesContainer extends BaseContainer<IRolesContainerInternalProps, {}> {
     return (
       <DefaultLayoutContainer headerOptions={{ items: header }}
                               {...props}>
-        <ListContainer listOptions={{
-                        itemOptions: { tpl: this.tpl },
-                        addAction: this.permissionService.isAccessible(AppPermissions.ROLE_ADD),
+        <ListContainer listConfiguration={{
+                        itemConfiguration: { tpl: this.tpl },
+                        useAddAction: this.permissionService.isAccessible(AppPermissions.ROLE_ADD),
                        }}
                        {...props}/>
       </DefaultLayoutContainer>

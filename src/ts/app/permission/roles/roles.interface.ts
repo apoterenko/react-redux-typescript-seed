@@ -1,16 +1,16 @@
 import {
   IBaseContainerInternalProps,
   IApplicationFormState,
-  IApplicationListWrapperState,
+  IListWrapperEntity,
   IApplicationFilterWrapperState,
 } from 'react-application-core';
 
 export interface IRolesContainerInternalProps extends IBaseContainerInternalProps,
-                                                      IApplicationListWrapperState,
+                                                      IListWrapperEntity,
                                                       IApplicationFilterWrapperState {
 }
 
-export interface IRolesState extends IApplicationListWrapperState,
+export interface IRolesState extends IListWrapperEntity,
                                      IApplicationFilterWrapperState {
   role: IApplicationFormState;
 }

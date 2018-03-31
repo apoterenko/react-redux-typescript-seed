@@ -23,7 +23,7 @@ import { ROLE_SECTION } from './role';
 @effectsBy(
   makeUntouchedListEffectsProxy<IAppState>({
     section: ROLES_SECTION,
-    listWrapperStateResolver: (state) => state.roles,
+    resolver: (state) => state.roles,
   }),
   makeEditedListEffectsProxy<IRoleEntity, IAppState>({
     listSection: ROLES_SECTION,

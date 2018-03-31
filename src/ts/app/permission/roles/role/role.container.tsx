@@ -45,13 +45,13 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
     sectionName: ROLE_SECTION,
   };
 
-  private layoutBuilder = new LayoutBuilder(uuid());
+  private readonly layoutBuilder = new LayoutBuilder(uuid());
 
   public render(): JSX.Element {
     const props = this.props;
     const dictionaries = props.dictionaries;
     const rights = dictionaries.rights && dictionaries.rights.data;
-    const title = props.isNewEntity
+    const title = props.newEntity
       ? 'New role'
       : `Role ${this.nc.id(props.entityId)}`;
 
