@@ -1,14 +1,14 @@
 import {
-  IApplicationState,
+  IApplicationStoreEntity,
   IApplicationPermissionsWrapperState,
 } from 'react-application-core';
 
 import { IAuthState } from './auth';
-import { IRolesState, PermissionsT } from './permission';
+import { IRolesStateWrapper, PermissionsT } from './permission';
 import { IAppDictionaries } from './dictionary';
 
-export interface IAppState extends IApplicationState<IAppDictionaries>,
-                                   IApplicationPermissionsWrapperState<PermissionsT> {
+export interface IAppState extends IApplicationStoreEntity<IAppDictionaries>,
+                                   IApplicationPermissionsWrapperState<PermissionsT>,
+                                   IRolesStateWrapper {
   auth: IAuthState;
-  roles: IRolesState;
 }

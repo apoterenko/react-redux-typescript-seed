@@ -13,14 +13,12 @@ import {
   defaultMappers,
   ChipsField,
   ContainerVisibilityTypeEnum,
-  IBaseContainerInternalProps,
   connector,
   LayoutBuilder,
-  LayoutEnum,
-  uuid,
+  LayoutBuilderTypeEnum,
 } from 'react-application-core';
 
-import { IRoleContainerInternalProps, ROLE_SECTION } from './role.interface';
+import { IRoleContainerProps, ROLE_SECTION } from './role.interface';
 import { IAppState } from '../../../app.interface';
 import { RIGHTS_DICTIONARY } from '../../../dictionary';
 import { ROUTER_PATHS } from '../../../app.routes';
@@ -28,24 +26,24 @@ import { AccessConfigT } from '../../permission.interface';
 import { AppPermissions } from '../../../app.permissions';
 
 @connector<IAppState, AccessConfigT>({
-  routeConfig: {
+  routeConfiguration: {
     type: ContainerVisibilityTypeEnum.PRIVATE,
     path: ROUTER_PATHS.ROLE,
   },
-  accessConfig: [AppPermissions.ROLE_VIEW],
+  accessConfiguration: [AppPermissions.ROLE_VIEW],
   mappers: [
     ...defaultMappers,
     (state) => formMapper(state.roles.role),
     (state) => listWrapperSelectedEntityMapper(state.roles, state.roles.role)
   ],
 })
-class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
+class RoleContainer extends BaseContainer<IRoleContainerProps> {
 
-  public static defaultProps: IBaseContainerInternalProps = {
+  public static defaultProps: IRoleContainerProps = {
     sectionName: ROLE_SECTION,
   };
 
-  private readonly layoutBuilder = new LayoutBuilder(uuid());
+  private readonly layoutBuilder = new LayoutBuilder();
 
   public render(): JSX.Element {
     const props = this.props;
@@ -56,16 +54,16 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
       : `Role ${this.nc.id(props.entityId)}`;
 
     return (
-      <DefaultLayoutContainer headerOptions={{
+      <DefaultLayoutContainer headerConfiguration={{
                                 navigationActionType: 'arrow_back',
-                                navigationActionHandler: this.activateFormDialog,
+                                onNavigationActionClick: this.activateFormDialog,
                               }}
                               title={title}
                               {...props}>
         <FormContainer {...props}>
           {
             this.layoutBuilder.build({
-              layout: LayoutEnum.VERTICAL,
+              layout: LayoutBuilderTypeEnum.VERTICAL,
               children: [
                 <TextField name='name'
                            label='Name'
@@ -74,8 +72,8 @@ class RoleContainer extends BaseContainer<IRoleContainerInternalProps, {}> {
                 <ChipsField name='rights'
                             label='Rights'
                             options={toSelectOptions(rights)}
-                            bindToDictionary={RIGHTS_DICTIONARY}
-                            menuOptions={{ useFilter: true, renderToCenterOfBody: true }}
+                            bindDictionary={RIGHTS_DICTIONARY}
+                            menuConfiguration={{ useFilter: true, renderToCenterOfBody: true }}
                             displayMessage='%d right(s)'/>
               ],
             })

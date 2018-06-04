@@ -6,44 +6,43 @@ import {
   defaultMappers,
   BaseContainer,
   DefaultLayoutContainer,
-  SearchToolbarContainer,
   ListContainer,
   ContainerVisibilityTypeEnum,
-  IBaseContainerInternalProps,
-  disabledActionsListWrapperMapper,
+  actionsDisabledListWrapperEntityMapper,
   connector,
+  SearchFieldToolbarContainer,
 } from 'react-application-core';
 
 import { ROUTER_PATHS } from '../../app.routes';
-import { IRolesContainerInternalProps, ROLES_SECTION } from './roles.interface';
+import { IRolesContainerProps, ROLES_SECTION } from './roles.interface';
 import { IAppState } from '../../app.interface';
 import { AccessConfigT, IRoleEntity } from '../permission.interface';
 import { AppPermissions } from '../../app.permissions';
 
 @connector<IAppState, AccessConfigT>({
-  routeConfig: {
+  routeConfiguration: {
     type: ContainerVisibilityTypeEnum.PRIVATE,
     path: ROUTER_PATHS.ROLES,
   },
-  accessConfig: [AppPermissions.ROLES_VIEW],
+  accessConfiguration: [AppPermissions.ROLES_VIEW],
   mappers: [
     ...defaultMappers,
     (state) => filterWrapperMapper(state.roles),
     (state) => listWrapperMapper(state.roles)
   ],
 })
-class RolesContainer extends BaseContainer<IRolesContainerInternalProps, {}> {
+class RolesContainer extends BaseContainer<IRolesContainerProps> {
 
-  public static defaultProps: IBaseContainerInternalProps = {
+  public static defaultProps: IRolesContainerProps = {
     sectionName: ROLES_SECTION,
   };
 
   public render(): JSX.Element {
     const props = this.props;
-    const header = <SearchToolbarContainer filterOptions={disabledActionsListWrapperMapper(props)}
-                                           {...props}/>;
+    const header = <SearchFieldToolbarContainer filterConfiguration={actionsDisabledListWrapperEntityMapper(props)}
+                                               {...props}/>;
     return (
-      <DefaultLayoutContainer headerOptions={{ items: header }}
+      <DefaultLayoutContainer headerConfiguration={{ items: header }}
                               {...props}>
         <ListContainer listConfiguration={{
                         itemConfiguration: { tpl: this.tpl },

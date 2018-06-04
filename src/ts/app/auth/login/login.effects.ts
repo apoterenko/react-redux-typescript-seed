@@ -4,23 +4,21 @@ import {
   provideInSingleton,
   FormActionBuilder,
   BaseEffects,
+  makeFailedFormEffectsProxy,
+  effectsBy,
+  ApplicationActionBuilder,
 } from 'react-application-core';
 
 import { IApi } from '../../api';
-import { ROUTER_PATHS } from '../../app.routes';
 import { LOGIN_SECTION } from './login.interface';
 
 @provideInSingleton(LoginEffects)
+@effectsBy(makeFailedFormEffectsProxy(LOGIN_SECTION))
 export class LoginEffects extends BaseEffects<IApi> {
 
   @EffectsService.effects(FormActionBuilder.buildSubmitActionType(LOGIN_SECTION))
-  public onAuthAccount(action: IEffectsAction): Promise<IEffectsAction> {
-    return this.api.authAccount(action.data)
-        .then(() => this.buildRouterNavigateAction(ROUTER_PATHS.AUTH_SMS));
-  }
-
-  @EffectsService.effects(FormActionBuilder.buildSubmitErrorActionType(LOGIN_SECTION))
-  public onAuthAccountError(action: IEffectsAction): IEffectsAction {
-    return this.buildNotificationErrorAction(action.error);
+  public async onAuthAccount(action: IEffectsAction): Promise<IEffectsAction> {
+    await this.api.authAccount(action.data);
+    return ApplicationActionBuilder.buildAfterLoginAction();
   }
 }

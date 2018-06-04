@@ -1,18 +1,38 @@
+import { Reducer } from 'redux';
+
 import {
-  IBaseContainerInternalProps,
-  IApplicationFormState,
-  IListWrapperEntity,
-  IApplicationFilterWrapperState,
+  IEditableEntity,
+  IFilteredListEntity,
+  IListEntity,
+  IQueryFilterEntity,
+  IQueryFilteredListEntity,
+  IContainerProps,
 } from 'react-application-core';
 
-export interface IRolesContainerInternalProps extends IBaseContainerInternalProps,
-                                                      IListWrapperEntity,
-                                                      IApplicationFilterWrapperState {
+export interface IRoleWrapper<TRole> {
+  role?: TRole;
 }
 
-export interface IRolesState extends IListWrapperEntity,
-                                     IApplicationFilterWrapperState {
-  role: IApplicationFormState;
+export interface IRolesWrapper<TRoles> {
+  roles?: TRoles;
+}
+
+export interface IRolesDefinition<TFilter, TList, TRole> extends IFilteredListEntity<TFilter, TList>,
+                                                                 IRoleWrapper<TRole> {
+}
+
+export interface IRolesContainerProps extends IContainerProps,
+                                              IQueryFilteredListEntity {
+}
+
+export interface IRolesStateWrapper extends IRolesWrapper<IRolesDefinition<IQueryFilterEntity,
+                                                          IListEntity,
+                                                          IEditableEntity>> {
+}
+
+export interface IRolesReducersMap extends IRolesDefinition<Reducer<{}>,
+                                                            Reducer<{}>,
+                                                            Reducer<{}>> {
 }
 
 export const ROLES_SECTION = 'roles';

@@ -10,10 +10,8 @@ import {
   AuthApiService,
   IAuthApi,
   IAuthResponse,
-  ISmsEntity,
 } from '../auth';
 import { IApi } from './api.interface';
-import { IAppState } from '../app.interface';
 import {
   PermissionApiService,
   IPermissionApi,
@@ -42,10 +40,6 @@ export class ApiService implements IApi {
 
   public authAccount(apiEntity: IApiEntity<ILoginEntity>): Promise<IAuthResponse> {
     return this.authApi.authAccount(apiEntity);
-  }
-
-  public authNonce(apiEntity: IApiEntity<ISmsEntity>, state: IAppState): Promise<IAuthResponse> {
-    return this.authApi.authNonce(apiEntity, state);
   }
 
   public saveRole(apiEntity: IApiEntity<IRoleEntity>): Promise<IRoleEntity> {

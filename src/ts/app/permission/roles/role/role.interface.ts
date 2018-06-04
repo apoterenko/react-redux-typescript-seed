@@ -1,10 +1,10 @@
-import { IFormContainerInternalProps } from 'react-application-core';
+import { IFormContainerProps } from 'react-application-core';
 
 import { IRoleEntity } from '../../permission.interface';
 import { IAppDictionariesWrapper } from '../../../dictionary';
 
-export interface IRoleContainerInternalProps extends IFormContainerInternalProps<IRoleEntity>,
-                                                     IAppDictionariesWrapper {
+export interface IRoleContainerProps extends IFormContainerProps<IRoleEntity>,
+                                             IAppDictionariesWrapper {
 }
 
 export const ROLE_SECTION = 'role';

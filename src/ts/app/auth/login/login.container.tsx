@@ -2,27 +2,25 @@ import * as React from 'react';
 
 import {
   FormContainer,
-  IFormContainerInternalProps,
+  IFormContainerProps,
   TextField,
   FormLayoutContainer,
   formMapper,
   BaseContainer,
   notificationMapper,
   ContainerVisibilityTypeEnum,
-  IBaseContainerInternalProps,
   connector,
 } from 'react-application-core';
 
-import { IAppState } from '../../app.interface';
-import { ROUTER_PATHS } from '../../app.routes';
-import { AccessConfigT } from '../../permission';
+import {IAppState} from '../../app.interface';
+import {ROUTER_PATHS} from '../../app.routes';
+import {AccessConfigT} from '../../permission';
 import {
-  ILoginEntity,
   LOGIN_SECTION,
 } from './login.interface';
 
 @connector<IAppState, AccessConfigT>({
-  routeConfig: {
+  routeConfiguration: {
     type: ContainerVisibilityTypeEnum.PUBLIC,
     path: ROUTER_PATHS.AUTH_LOGIN,
   },
@@ -31,38 +29,31 @@ import {
     (state) => formMapper(state.auth.login)
   ],
 })
-export class LoginContainer extends BaseContainer<IFormContainerInternalProps<ILoginEntity>, {}> {
+export class LoginContainer extends BaseContainer<IFormContainerProps> {
 
-  public static defaultProps: IBaseContainerInternalProps = {
+  public static defaultProps: IFormContainerProps = {
     sectionName: LOGIN_SECTION,
   };
 
-  constructor(props: IFormContainerInternalProps<ILoginEntity>) {
-    super(props);
-  }
-
   public render(): JSX.Element {
     const props = this.props;
-    const changes = props.form.changes;
 
     return (
-        <FormLayoutContainer title='Log in'
-                             {...props}>
-          <FormContainer formConfiguration={{actionText: 'Next', className: 'app-auth-form', actionIcon: 'done'}}
-                         {...props}>
-            <TextField name='login'
-                       type='text'
-                       value={changes.login}
-                       label='Login'
-                       autoFocus={true}
-                       required={true}/>
-            <TextField name='password'
-                       type='password'
-                       value={changes.password}
-                       label='Password'
-                       required={true}/>
-          </FormContainer>
-        </FormLayoutContainer>
+      <FormLayoutContainer title='Log in'
+                           {...props}>
+        <FormContainer formConfiguration={{actionText: 'Next', className: 'app-auth-form', actionIcon: 'done'}}
+                       {...props}>
+          <TextField name='login'
+                     type='text'
+                     label='Login'
+                     autoFocus={true}
+                     required={true}/>
+          <TextField name='password'
+                     type='password'
+                     label='Password'
+                     required={true}/>
+        </FormContainer>
+      </FormLayoutContainer>
     );
   }
 }

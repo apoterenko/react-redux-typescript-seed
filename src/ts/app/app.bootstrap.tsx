@@ -5,9 +5,8 @@ import {
   makeStore,
   DEFAULT_APPLICATION_SETTINGS,
   IApplicationSettings,
-  IRoutes,
   ApplicationStorageTypeEnum,
-  INavigationListItemOptions,
+  INavigationListItemConfiguration,
 } from 'react-application-core';
 
 // Styles
@@ -45,11 +44,11 @@ appContainer.bind(DI_TYPES.Routes).toConstantValue({
   signIn: ROUTER_PATHS.AUTH_LOGIN,
   logout: ROUTER_PATHS.LOGOUT,
   home: ROUTER_PATHS.HOME,
-} as IRoutes);
+});
 
 // Menu
-const menu: INavigationListItemOptions[] = [
-  {label: 'Roles', icon: 'list', link: ROUTER_PATHS.ROLES, accessConfig: AppPermissions.ROLES_VIEW},
+const menu: INavigationListItemConfiguration[] = [
+  {label: 'Roles', icon: 'list', link: ROUTER_PATHS.ROLES, accessConfiguration: AppPermissions.ROLES_VIEW},
   {label: 'Exit', icon: 'exit_to_app', link: ROUTER_PATHS.LOGOUT}
 ];
 appContainer.bind(DI_TYPES.Menu).toConstantValue(menu);
@@ -61,7 +60,8 @@ makeStore(
       roles: rolesReducers,
     },
     applicationSettings
-);
+).then(() => {
 
-// Bootstrap app
-bootstrap(AppContainer);
+    // Bootstrap app
+    bootstrap(AppContainer);
+});

@@ -8,7 +8,7 @@ import {
   effectsBy,
   makeFilteredListEffectsProxy,
   makeUntouchedListEffectsProxy,
-  makeFailedListEffectsProxy,
+  makeFailedListLoadEffectsProxy,
   makeEditedListEffectsProxy,
 } from 'react-application-core';
 
@@ -31,7 +31,7 @@ import { ROLE_SECTION } from './role';
     pathResolver: (role) => buildEntityRoute<IRoleEntity>(ROUTER_PATHS.ROLE, role),
   }),
   makeFilteredListEffectsProxy({ section: ROLES_SECTION }),
-  makeFailedListEffectsProxy(ROLES_SECTION)
+  makeFailedListLoadEffectsProxy(ROLES_SECTION)
 )
 class RolesEffects extends BaseEffects<IApi> {
 
