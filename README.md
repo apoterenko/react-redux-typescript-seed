@@ -1,5 +1,7 @@
 # react-redux-typescript-webpack-seed
 
+Is based on [react-application-core](https://github.com/apoterenko/react-application-core)
+
 #### Install
 
 * npm install
