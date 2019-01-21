@@ -45,15 +45,15 @@ class RolesContainer extends BaseContainer<IRolesContainerProps> {
       <DefaultLayoutContainer headerConfiguration={{ items: header }}
                               {...props}>
         <ListContainer listConfiguration={{
-                        itemConfiguration: { tpl: this.tpl },
-                        useAddAction: this.permissionService.isAccessible(AppPermissions.ROLE_ADD),
+                        itemConfiguration: { renderer: this.renderer },
+                        useAddAction: this.isPermissionAccessible(AppPermissions.ROLE_ADD),
                        }}
                        {...props}/>
       </DefaultLayoutContainer>
     );
   }
 
-  private tpl = (item: IRoleEntity): JSX.Element => (
+  private renderer = (item: IRoleEntity): JSX.Element => (
     <span>
        {item.name} {this.nc.id(item.id)}
     </span>

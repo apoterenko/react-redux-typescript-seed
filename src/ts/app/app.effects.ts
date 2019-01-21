@@ -22,7 +22,7 @@ export class AppEffects extends ApplicationEffects<IApi> {
       this.api.accountRights()
     ]);
     return [
-      UserActionBuilder.buildUpdateAction(data[0]),
+      UserActionBuilder.buildUpdateAction({payload: data[0] as IAccountEntity}),
       PermissionsActionBuilder.buildUpdateAction(data[1]),
       ApplicationActionBuilder.buildPrepareDoneAction()
     ];

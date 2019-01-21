@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { composeReducers } from 'react-application-core';
 
 import {
   listReducer,
@@ -8,10 +8,10 @@ import {
   formReducer,
 } from 'react-application-core';
 
-import { ROLES_SECTION } from './roles.interface';
+import { IRolesReducersMap, ROLES_SECTION } from './roles.interface';
 import { ROLE_SECTION } from './role';
 
-export const rolesReducers = combineReducers({
+export const rolesReducers = composeReducers<IRolesReducersMap>({
   list: filter(listReducer, reducerSectionFilter(ROLES_SECTION)),
   filter: filter(filterReducer, reducerSectionFilter(ROLES_SECTION)),
   role: filter(formReducer, reducerSectionFilter(ROLE_SECTION)),

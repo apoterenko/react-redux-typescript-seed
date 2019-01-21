@@ -2,8 +2,8 @@ import {
   IApiEntity,
   provideInSingleton,
   BaseTransport,
-  nvlEmpty,
-  toEntityIds,
+  fromMultiFieldEntityToEntitiesIds,
+  undefEmpty,
 } from 'react-application-core';
 
 import { IPermissionApi } from './permission-api.interface';
@@ -13,13 +13,11 @@ import { IRightEntity, IRoleEntity } from '../permission.interface';
 export class PermissionApiService extends BaseTransport implements IPermissionApi {
 
   public saveRole(apiEntity: IApiEntity<IRoleEntity>): Promise<IRoleEntity> {
-    return this.doSaveEntity({
+    return this.doSaveEntity<IRoleEntity>({
       apiEntity,
       addApi: 'store.role.add',
       editApi: 'store.role.edit',
-      extraParams: {
-        rights: toEntityIds(apiEntity.changes.rights),
-      },
+      extraParams: { rights: fromMultiFieldEntityToEntitiesIds(apiEntity.changes.rights) },
     });
   }
 
@@ -27,7 +25,7 @@ export class PermissionApiService extends BaseTransport implements IPermissionAp
     return this.transport.request<IRoleEntity[]>({
       name: 'store.role.list',
       params: {
-        query: nvlEmpty(query),
+        query: undefEmpty(query),
       },
     });
   }

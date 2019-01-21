@@ -12,7 +12,7 @@ import {
 
 import { ROLES_SECTION } from '../roles.interface';
 import { ROLE_SECTION } from './role.interface';
-import { IApi } from '../../../api/api.interface';
+import { IApi } from '../../../api';
 import { IRoleEntity } from '../../permission.interface';
 
 @provideInSingleton(RoleEffects)

@@ -14,7 +14,7 @@ import {
   ChipsField,
   ContainerVisibilityTypeEnum,
   connector,
-  LayoutBuilder,
+  ReactLayoutBuilder,
   LayoutBuilderTypeEnum,
 } from 'react-application-core';
 
@@ -43,7 +43,7 @@ class RoleContainer extends BaseContainer<IRoleContainerProps> {
     sectionName: ROLE_SECTION,
   };
 
-  private readonly layoutBuilder = new LayoutBuilder();
+  private readonly layoutBuilder = new ReactLayoutBuilder();
 
   public render(): JSX.Element {
     const props = this.props;
