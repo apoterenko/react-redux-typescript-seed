@@ -15,7 +15,7 @@ app.use(function (req, res) {
 	setTimeout(function () {
 		var params = req.body;
 		var data = jsonConfig[params.name];
-		res.send(JSON.stringify({result: data === undefined ? true : data}));
+		res.send(JSON.stringify(data === undefined ? true : data));
 	}, 1000);
 });
 

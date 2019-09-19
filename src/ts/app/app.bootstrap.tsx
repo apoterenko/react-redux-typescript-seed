@@ -4,8 +4,8 @@ import {
   DI_TYPES,
   makeStore,
   DEFAULT_APPLICATION_SETTINGS,
-  IApplicationSettings,
-  ApplicationStorageTypeEnum,
+  ISettings,
+  StorageTypesEnum,
   INavigationListItemConfiguration,
 } from 'react-application-core';
 
@@ -14,6 +14,7 @@ import './app.bootstrap.scss';
 
 // Modules
 import 'react-application-core/module';
+import 'react-application-core/core/log/log.module';
 import './auth/auth.module';
 import './main/main.module';
 import './permission/permission.module';
@@ -28,10 +29,10 @@ import { authReducers } from './auth';
 import { AppPermissions } from './app.permissions';
 import { AppPermissionService } from './permission';
 
-const applicationSettings: IApplicationSettings = {
+const applicationSettings: ISettings = {
   ...DEFAULT_APPLICATION_SETTINGS,
   companyName: 'Test Company',
-  persistenceStorage: ApplicationStorageTypeEnum.SESSION,
+  persistenceStorage: StorageTypesEnum.SESSION,
 };
 
 // Services

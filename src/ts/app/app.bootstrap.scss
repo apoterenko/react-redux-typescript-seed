@@ -1,7 +1,6 @@
 @import './auth/auth';
 @import './component/component';
-@import '~react-application-core/rac.min';
-@import '~react-application-core/rac-material.min';
+@import '~react-application-core/scss/bootstrap';
 
 $mdc-theme-primary: #212121;
 @import '~material-components-web/material-components-web';

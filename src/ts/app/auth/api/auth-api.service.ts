@@ -19,7 +19,7 @@ export class AuthApiService extends BaseTransport implements IAuthApi {
   public authAccount(apiEntity: IApiEntity<ILoginEntity>): Promise<IAuthResponse> {
     return this.transport.request<IAuthResponse>({
       name: AuthApiService.AUTH_ACCOUNT,
-      notApplyAuth: true,
+      noAuth: true,
       params: apiEntity.changes,
     });
   }

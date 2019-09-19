@@ -10,7 +10,7 @@ import {
   ContainerVisibilityTypeEnum,
   actionsDisabledListWrapperEntityMapper,
   connector,
-  SearchFieldToolbarContainer,
+  SearchToolbarContainer,
 } from 'react-application-core';
 
 import { ROUTER_PATHS } from '../../app.routes';
@@ -39,8 +39,8 @@ class RolesContainer extends BaseContainer<IRolesContainerProps> {
 
   public render(): JSX.Element {
     const props = this.props;
-    const header = <SearchFieldToolbarContainer filterConfiguration={actionsDisabledListWrapperEntityMapper(props)}
-                                               {...props}/>;
+    const header = <SearchToolbarContainer filterConfiguration={actionsDisabledListWrapperEntityMapper(props)}
+                                           {...props}/>;
     return (
       <DefaultLayoutContainer headerConfiguration={{ items: header }}
                               {...props}>

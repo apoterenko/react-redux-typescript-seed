@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 
 import {
   IEditableEntity,
-  IListAndFilterWrapperEntity,
+  IFilteredListWrapperEntity,
   IListEntity,
   IQueryFilterEntity,
   IQueryFilteredListEntity,
@@ -17,7 +17,7 @@ export interface IRolesWrapper<TRoles> {
   roles?: TRoles;
 }
 
-export interface IRolesDefinition<TFilter, TList, TRole> extends IListAndFilterWrapperEntity<TFilter, TList>,
+export interface IRolesDefinition<TFilter, TList, TRole> extends IFilteredListWrapperEntity<TFilter, TList>,
                                                                  IRoleWrapper<TRole> {
 }
 

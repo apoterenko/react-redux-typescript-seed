@@ -2,20 +2,20 @@ import * as React from 'react';
 
 import {
   BaseContainer,
-  FormContainer,
-  FormDialog,
-  TextField,
-  toSelectOptions,
-  FORM_DIALOG_REF,
-  listWrapperSelectedEntityMapper,
-  formMapper,
+  ChipsField,
+  connector,
+  ContainerVisibilityTypeEnum,
   DefaultLayoutContainer,
   defaultMappers,
-  ChipsField,
-  ContainerVisibilityTypeEnum,
-  connector,
-  ReactLayoutBuilder,
+  dictionaryEntityMapper,
+  FORM_DIALOG_REF,
+  FormContainer,
+  FormDialog,
+  formMapper,
+  LayoutBuilder,
   LayoutBuilderTypeEnum,
+  mapListSelectedExtendedEntity,
+  TextField,
 } from 'react-application-core';
 
 import { IRoleContainerProps, ROLE_SECTION } from './role.interface';
@@ -34,7 +34,7 @@ import { AppPermissions } from '../../../app.permissions';
   mappers: [
     ...defaultMappers,
     (state) => formMapper(state.roles.role),
-    (state) => listWrapperSelectedEntityMapper(state.roles, state.roles.role)
+    (state) => mapListSelectedExtendedEntity(state.roles, state.roles.role)
   ],
 })
 class RoleContainer extends BaseContainer<IRoleContainerProps> {
@@ -43,12 +43,11 @@ class RoleContainer extends BaseContainer<IRoleContainerProps> {
     sectionName: ROLE_SECTION,
   };
 
-  private readonly layoutBuilder = new ReactLayoutBuilder();
+  private readonly layoutBuilder = new LayoutBuilder();
 
   public render(): JSX.Element {
     const props = this.props;
     const dictionaries = props.dictionaries;
-    const rights = dictionaries.rights && dictionaries.rights.data;
     const title = props.newEntity
       ? 'New role'
       : `Role ${this.nc.id(props.entityId)}`;
@@ -71,9 +70,9 @@ class RoleContainer extends BaseContainer<IRoleContainerProps> {
                            required={true}/>,
                 <ChipsField name='rights'
                             label='Rights'
-                            options={toSelectOptions(rights)}
+                            options={dictionaryEntityMapper(dictionaries.rights)}
                             bindDictionary={RIGHTS_DICTIONARY}
-                            menuConfiguration={{ useFilter: true, renderToCenterOfBody: true }}
+                            menuConfiguration={{ useFilter: true, centeredMenu: true }}
                             displayMessage='%d right(s)'/>
               ],
             })
