@@ -5,6 +5,7 @@ import {
   bootstrapWebApp,
   buildUniversalStore,
   DEFAULT_APPLICATION_SETTINGS,
+  DEFAULT_BOOTSTRAP_ENTITY,
   DI_TYPES,
   INavigationListItemConfiguration,
   ISettings,
@@ -69,4 +70,7 @@ buildUniversalStore({
     roles: rolesReducers,
   },
   applicationSettings
-).then(() => bootstrapWebApp(() => bootstrapReactApp(AppContainer)));
+).then(() => bootstrapWebApp(() => bootstrapReactApp(AppContainer, {
+  ...DEFAULT_BOOTSTRAP_ENTITY,
+  flexEnabled: true,
+})));
