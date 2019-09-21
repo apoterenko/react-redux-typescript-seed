@@ -1,20 +1,29 @@
 import {
-  bootstrap,
   appContainer,
-  DI_TYPES,
-  makeStore,
+  bindInSingleton,
+  bootstrapReactApp,
+  bootstrapWebApp,
+  buildUniversalStore,
   DEFAULT_APPLICATION_SETTINGS,
+  DI_TYPES,
+  INavigationListItemConfiguration,
   ISettings,
   StorageTypesEnum,
-  INavigationListItemConfiguration,
 } from 'react-application-core';
 
 // Styles
 import './app.bootstrap.scss';
 
-// Modules
+/**
+ * Core modules
+ */
 import 'react-application-core/module';
 import 'react-application-core/core/log/log.module';
+import 'react-application-core/core/transport/request/data-factory/json-rpc/transport-json-rpc-request-data-factory.module';
+
+/**
+ * App modules
+ */
 import './auth/auth.module';
 import './main/main.module';
 import './permission/permission.module';
@@ -37,7 +46,7 @@ const applicationSettings: ISettings = {
 
 // Services
 appContainer.rebind(DI_TYPES.Settings).toConstantValue(applicationSettings);
-appContainer.rebind(DI_TYPES.Permission).to(AppPermissionService).inSingletonScope();
+bindInSingleton(DI_TYPES.Permission, AppPermissionService);
 
 // Routes
 appContainer.bind(DI_TYPES.Routes).toConstantValue({
@@ -55,14 +64,9 @@ const menu: INavigationListItemConfiguration[] = [
 appContainer.bind(DI_TYPES.Menu).toConstantValue(menu);
 
 // Store
-makeStore(
-    {
-      auth: authReducers,
-      roles: rolesReducers,
-    },
-    applicationSettings
-).then(() => {
-
-    // Bootstrap app
-    bootstrap(AppContainer);
-});
+buildUniversalStore({
+    auth: authReducers,
+    roles: rolesReducers,
+  },
+  applicationSettings
+).then(() => bootstrapWebApp(() => bootstrapReactApp(AppContainer)));
