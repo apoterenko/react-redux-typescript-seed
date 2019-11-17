@@ -7,7 +7,7 @@ import {
   BaseContainer,
   DefaultLayoutContainer,
   ListContainer,
-  ContainerVisibilityTypeEnum,
+  ContainerVisibilityTypesEnum,
   actionsDisabledListWrapperEntityMapper,
   connector,
   SearchToolbarContainer,
@@ -21,7 +21,7 @@ import { AppPermissions } from '../../app.permissions';
 
 @connector<IAppState, AccessConfigT>({
   routeConfiguration: {
-    type: ContainerVisibilityTypeEnum.PRIVATE,
+    type: ContainerVisibilityTypesEnum.PRIVATE,
     path: ROUTER_PATHS.ROLES,
   },
   accessConfiguration: [AppPermissions.ROLES_VIEW],
@@ -39,16 +39,18 @@ class RolesContainer extends BaseContainer<IRolesContainerProps> {
 
   public render(): JSX.Element {
     const props = this.props;
-    const header = <SearchToolbarContainer filterConfiguration={actionsDisabledListWrapperEntityMapper(props)}
-                                           {...props}/>;
+    const header = (
+      <SearchToolbarContainer
+        filterConfiguration={actionsDisabledListWrapperEntityMapper(props)}
+        {...props}/>
+    );
     return (
-      <DefaultLayoutContainer headerConfiguration={{ items: header }}
-                              {...props}>
-        <ListContainer listConfiguration={{
-                        itemConfiguration: { renderer: this.renderer },
-                        useAddAction: this.isPermissionAccessible(AppPermissions.ROLE_ADD),
-                       }}
-                       {...props}/>
+      <DefaultLayoutContainer
+        headerConfiguration={{items: header}}
+        {...props}>
+        <ListContainer
+          listConfiguration={{itemConfiguration: {renderer: this.renderer}}}
+          {...props}/>
       </DefaultLayoutContainer>
     );
   }

@@ -4,16 +4,16 @@ import {
   BaseContainer,
   ChipsField,
   connector,
-  ContainerVisibilityTypeEnum,
+  ContainerVisibilityTypesEnum,
   DefaultLayoutContainer,
   defaultMappers,
-  dictionaryEntityMapper,
   FORM_DIALOG_REF,
   FormContainer,
   FormDialog,
   formMapper,
   LayoutBuilder,
   LayoutBuilderTypeEnum,
+  mapDictionaryEntity,
   mapListSelectedExtendedEntity,
   TextField,
 } from 'react-application-core';
@@ -27,7 +27,7 @@ import { AppPermissions } from '../../../app.permissions';
 
 @connector<IAppState, AccessConfigT>({
   routeConfiguration: {
-    type: ContainerVisibilityTypeEnum.PRIVATE,
+    type: ContainerVisibilityTypesEnum.PRIVATE,
     path: ROUTER_PATHS.ROLE,
   },
   accessConfiguration: [AppPermissions.ROLE_VIEW],
@@ -39,7 +39,7 @@ import { AppPermissions } from '../../../app.permissions';
 })
 class RoleContainer extends BaseContainer<IRoleContainerProps> {
 
-  public static defaultProps: IRoleContainerProps = {
+  public static readonly defaultProps: IRoleContainerProps = {
     sectionName: ROLE_SECTION,
   };
 
@@ -70,7 +70,7 @@ class RoleContainer extends BaseContainer<IRoleContainerProps> {
                            required={true}/>,
                 <ChipsField name='rights'
                             label='Rights'
-                            options={dictionaryEntityMapper(dictionaries.rights)}
+                            options={mapDictionaryEntity(dictionaries.rights)}
                             bindDictionary={RIGHTS_DICTIONARY}
                             menuConfiguration={{ useFilter: true, centeredMenu: true }}
                             displayMessage='%d right(s)'/>

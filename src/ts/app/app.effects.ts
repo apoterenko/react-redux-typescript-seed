@@ -1,11 +1,11 @@
 import {EffectsService, IEffectsAction} from 'redux-effects-promise';
 
 import {
-  provideInSingleton,
   ApplicationActionBuilder,
   ApplicationEffects,
-  UserActionBuilder,
   PermissionsActionBuilder,
+  provideInSingleton,
+  userActionBuilder,
 } from 'react-application-core';
 
 import {IApi} from './api';
@@ -22,9 +22,9 @@ export class AppEffects extends ApplicationEffects<IApi> {
       this.api.accountRights()
     ]);
     return [
-      UserActionBuilder.buildUpdateAction({payload: data[0] as IAccountEntity}),
+      userActionBuilder.buildReplaceAction(data[0]),
       PermissionsActionBuilder.buildUpdateAction(data[1]),
-      ApplicationActionBuilder.buildPrepareDoneAction()
+      ApplicationActionBuilder
     ];
   }
 }

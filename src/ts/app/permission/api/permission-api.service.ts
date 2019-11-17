@@ -1,13 +1,13 @@
 import {
+  asMultiFieldMappedEntitiesIds,
+  BaseTransport,
   IApiEntity,
   provideInSingleton,
-  BaseTransport,
-  fromMultiFieldEntityToEntitiesIds,
   undefEmpty,
 } from 'react-application-core';
 
-import { IPermissionApi } from './permission-api.interface';
-import { IRightEntity, IRoleEntity } from '../permission.interface';
+import {IPermissionApi} from './permission-api.interface';
+import {IRightEntity, IRoleEntity} from '../permission.interface';
 
 @provideInSingleton(PermissionApiService)
 export class PermissionApiService extends BaseTransport implements IPermissionApi {
@@ -17,7 +17,7 @@ export class PermissionApiService extends BaseTransport implements IPermissionAp
       apiEntity,
       addApi: 'store.role.add',
       editApi: 'store.role.edit',
-      extraParams: { rights: fromMultiFieldEntityToEntitiesIds(apiEntity.changes.rights) },
+      extraParams: {rights: asMultiFieldMappedEntitiesIds(apiEntity.changes.rights)},
     });
   }
 
@@ -31,6 +31,6 @@ export class PermissionApiService extends BaseTransport implements IPermissionAp
   }
 
   public loadRights(): Promise<IRightEntity[]> {
-    return this.transport.request<IRightEntity[]>({ name: 'store.right.list' });
+    return this.transport.request<IRightEntity[]>({name: 'store.right.list'});
   }
 }

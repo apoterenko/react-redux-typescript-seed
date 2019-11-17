@@ -1,14 +1,15 @@
 import {
   appContainer,
+  ApplicationContainer,
   bindInSingleton,
   bootstrapReactApp,
-  bootstrapWebApp,
   buildUniversalStore,
   DEFAULT_APPLICATION_SETTINGS,
-  DEFAULT_BOOTSTRAP_ENTITY,
   DI_TYPES,
+  IBootstrapper,
   INavigationListItemConfiguration,
-  ISettings,
+  ISettingsEntity,
+  staticInjector,
   StorageTypesEnum,
 } from 'react-application-core';
 
@@ -32,14 +33,13 @@ import './dictionary/dictionaries.module';
 import './api/api.module';
 import './app.effects';
 
-import { AppContainer } from './app.container';
-import { ROUTER_PATHS } from './app.routes';
-import { rolesReducers } from './permission';
-import { authReducers } from './auth';
-import { AppPermissions } from './app.permissions';
-import { AppPermissionService } from './permission';
+import {ROUTER_PATHS} from './app.routes';
+import {rolesReducers} from './permission';
+import {authReducers} from './auth';
+import {AppPermissions} from './app.permissions';
+import {AppPermissionService} from './permission';
 
-const applicationSettings: ISettings = {
+const applicationSettings: ISettingsEntity = {
   ...DEFAULT_APPLICATION_SETTINGS,
   companyName: 'Test Company',
   persistenceStorage: StorageTypesEnum.SESSION,
@@ -47,7 +47,7 @@ const applicationSettings: ISettings = {
 
 // Services
 appContainer.rebind(DI_TYPES.Settings).toConstantValue(applicationSettings);
-bindInSingleton(DI_TYPES.Permission, AppPermissionService);
+bindInSingleton(DI_TYPES.PermissionsManager, AppPermissionService);
 
 // Routes
 appContainer.bind(DI_TYPES.Routes).toConstantValue({
@@ -69,8 +69,5 @@ buildUniversalStore({
     auth: authReducers,
     roles: rolesReducers,
   },
-  applicationSettings
-).then(() => bootstrapWebApp(() => bootstrapReactApp(AppContainer, {
-  ...DEFAULT_BOOTSTRAP_ENTITY,
-  flexEnabled: true,
-})));
+).then(() =>
+  staticInjector<IBootstrapper>(DI_TYPES.WebBootstrapper).init(() => bootstrapReactApp(ApplicationContainer)));

@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 import {
-  defaultMappers,
   BaseContainer,
-  DefaultLayoutContainer,
-  ContainerVisibilityTypeEnum,
-  IContainerProps,
   connector,
+  ContainerVisibilityTypesEnum,
+  DefaultLayoutContainer,
+  defaultMappers,
+  IContainerProps,
 } from 'react-application-core';
 
 import { IAppState } from '../app.interface';
@@ -16,7 +16,7 @@ import { MAIN_SECTION } from './main.interface';
 
 @connector<IAppState, AccessConfigT>({
   routeConfiguration: {
-    type: ContainerVisibilityTypeEnum.PRIVATE,
+    type: ContainerVisibilityTypesEnum.PRIVATE,
     path: ROUTER_PATHS.HOME,
   },
   mappers: [
@@ -25,7 +25,7 @@ import { MAIN_SECTION } from './main.interface';
 })
 class MainContainer extends BaseContainer {
 
-  public static defaultProps: IContainerProps = {
+  public static readonly defaultProps: IContainerProps = {
     sectionName: MAIN_SECTION,
   };
 
