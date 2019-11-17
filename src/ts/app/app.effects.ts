@@ -11,12 +11,14 @@ import {
 import {IApi} from './api';
 import {PermissionsT} from './permission';
 import {IAccountEntity} from './account';
+import {IAppState} from './app.interface';
 
 @provideInSingleton(AppEffects)
 export class AppEffects extends ApplicationEffects<IApi> {
 
   @EffectsService.effects(ApplicationActionBuilder.buildPrepareActionType())
-  public async $onPrepare(): Promise<IEffectsAction[]> {
+  public async $onPrepare(action: IEffectsAction,
+                          state: IAppState): Promise<IEffectsAction[]> {
     const data = await Promise.all<IAccountEntity | PermissionsT>([
       this.api.accountGet(),
       this.api.accountRights()
@@ -24,7 +26,7 @@ export class AppEffects extends ApplicationEffects<IApi> {
     return [
       userActionBuilder.buildReplaceAction(data[0]),
       PermissionsActionBuilder.buildUpdateAction(data[1]),
-      ApplicationActionBuilder
+      ...await this.$onPrepare(action, state)
     ];
   }
 }
