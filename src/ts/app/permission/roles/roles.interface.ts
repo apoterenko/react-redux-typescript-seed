@@ -1,12 +1,9 @@
 import { Reducer } from 'redux';
 
 import {
-  IEditableEntity,
-  IFilteredListWrapperEntity,
-  IListEntity,
-  IQueryFilterEntity,
-  IQueryFilteredListEntity,
-  IContainerProps,
+  IListWrapper,
+  IQueryFilterWrapper,
+  IContainerProps, IReduxQueryFilterEntity, IReduxListEntity,
 } from 'react-application-core';
 
 export interface IRoleWrapper<TRole> {
@@ -17,17 +14,18 @@ export interface IRolesWrapper<TRoles> {
   roles?: TRoles;
 }
 
-export interface IRolesDefinition<TFilter, TList, TRole> extends IFilteredListWrapperEntity<TFilter, TList>,
+export interface IRolesDefinition<TFilter, TList, TRole> extends IListWrapper<TList>,
+                                                                 IQueryFilterWrapper<TFilter>,
                                                                  IRoleWrapper<TRole> {
 }
 
 export interface IRolesContainerProps extends IContainerProps,
-                                              IQueryFilteredListEntity {
+                                              any {
 }
 
-export interface IRolesStateWrapper extends IRolesWrapper<IRolesDefinition<IQueryFilterEntity,
-                                                          IListEntity,
-                                                          IEditableEntity>> {
+export interface IRolesStateWrapper extends IRolesWrapper<IRolesDefinition<IReduxQueryFilterEntity,
+                                                          IReduxListEntity,
+                                                          any>> {
 }
 
 export interface IRolesReducersMap extends IRolesDefinition<Reducer<{}>,

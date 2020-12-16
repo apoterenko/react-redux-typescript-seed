@@ -1,15 +1,15 @@
 import * as React from 'react';
 
 import {
-  listWrapperMapper,
-  filterWrapperMapper,
-  defaultMappers,
-  BaseContainer,
-  DefaultLayoutContainer,
-  ListContainer,
-  ContainerVisibilityTypesEnum,
   actionsDisabledListWrapperEntityMapper,
   connector,
+  ContainerVisibilityTypesEnum,
+  DefaultLayoutContainer,
+  filterWrapperMapper,
+  GenericContainer,
+  ListContainer,
+  listWrapperMapper,
+  Mappers,
   SearchToolbarContainer,
 } from 'react-application-core';
 
@@ -26,12 +26,12 @@ import { AppPermissions } from '../../app.permissions';
   },
   accessConfiguration: [AppPermissions.ROLES_VIEW],
   mappers: [
-    ...defaultMappers,
+    Mappers.storeEntity,
     (state) => filterWrapperMapper(state.roles),
     (state) => listWrapperMapper(state.roles)
   ],
 })
-class RolesContainer extends BaseContainer<IRolesContainerProps> {
+class RolesContainer extends GenericContainer<IRolesContainerProps> {
 
   public static defaultProps: IRolesContainerProps = {
     sectionName: ROLES_SECTION,

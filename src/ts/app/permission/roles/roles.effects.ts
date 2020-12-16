@@ -1,14 +1,14 @@
-import { EffectsService, IEffectsAction } from 'redux-effects-promise';
+import {
+  EffectsService,
+  IEffectsAction,
+} from 'redux-effects-promise';
 
 import {
   BaseEffects,
   buildEntityRoute,
-  effectsBy,
+  EffectsFactories,
   ListActionBuilder,
-  makeEditedListEffectsProxy,
-  makeFailedListLoadEffectsProxy,
-  makeFilteredListEffectsProxy,
-  makeUntouchedListEffectsProxy,
+  effectsBy,
   provideInSingleton,
 } from 'react-application-core';
 
@@ -21,17 +21,17 @@ import { ROLE_SECTION } from './role';
 
 @provideInSingleton(RolesEffects)
 @effectsBy(
-  makeUntouchedListEffectsProxy<IAppState>({
+  EffectsFactories.untouchedListEffectsProxy<IAppState>({
     listSection: ROLES_SECTION,
-    resolver: (state) => state.roles,
+    listAccessor: (state) => state.roles.list,
   }),
-  makeEditedListEffectsProxy<IRoleEntity, IAppState>({
+  EffectsFactories.editedListEffectsProxy<IRoleEntity, IAppState>({
     listSection: ROLES_SECTION,
     formSection: ROLE_SECTION,
     path: (role) => buildEntityRoute<IRoleEntity>(ROUTER_PATHS.ROLE, role),
   }),
-  makeFilteredListEffectsProxy({ listSection: ROLES_SECTION }),
-  makeFailedListLoadEffectsProxy(ROLES_SECTION)
+  EffectsFactories.filteredListEffectsProxy({listSection: ROLES_SECTION}),
+  EffectsFactories.listLoadErrorEffectsProxy(ROLES_SECTION)
 )
 class RolesEffects extends BaseEffects<IApi> {
 

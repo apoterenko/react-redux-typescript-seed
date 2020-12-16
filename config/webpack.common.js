@@ -1,18 +1,18 @@
 const helpers = require('./helpers');
 
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
+const DefinePlugin = require('webpack/lib/DefinePlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StringReplacePlugin = require('string-replace-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
 const APP_VERSION = process.env.npm_package_version || '0.0.0';
 const METADATA = { host: HOST, port: PORT, APP_VERSION: APP_VERSION };
 
-const ExtractSassPlugin = new ExtractTextPlugin({filename: '[name].css?' + APP_VERSION});
+const miniCssExtractPlugin = new MiniCssExtractPlugin({filename: '[name].css?' + APP_VERSION});
 
 module.exports.METADATA = METADATA;
 module.exports.define = function (options) {
@@ -47,16 +47,12 @@ module.exports.define = function (options) {
         },
         {
           test: /\.scss$/,
-          use: ExtractSassPlugin.extract({
-            use: [{
-              loader: 'css-loader'
-            }, {
-              loader: 'sass-loader',
-              options: {
-                includePaths: [helpers.root('node_modules')]
-              }
-            }]
-          })
+          use: [MiniCssExtractPlugin.loader, 'css-loader', {
+            loader: 'sass-loader',
+            options: {
+              includePaths: [helpers.root('node_modules')]
+            }
+          }],
         },
         {
           test: /\.js$/,
@@ -109,19 +105,12 @@ module.exports.define = function (options) {
       ]
     },
     plugins: [
-      ExtractSassPlugin,
+      miniCssExtractPlugin,
       new CheckerPlugin(),
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'src/app.html',
-        inject: 'body',
-        chunksSortMode: function (a, b) {
-          const order = ['polyfills', 'app'];
-          return order.indexOf(a.names[0]) > order.indexOf(b.names[0]) ? 1 : -1;
-        }
-      }),
-      new ScriptExtHtmlWebpackPlugin({
-        sync: /polyfills|app/
+        inject: 'body'
       }),
       new LoaderOptionsPlugin({
         minimize: options.isProd,
